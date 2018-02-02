@@ -1,12 +1,19 @@
-<!DOCTYPE html>
-<html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Document</title>
-    </head>
-    <body>
-        <h1>PMDtodo</h1>
-    </body>
-</html>
+<% include partials/header %>
+
+<form method="post" action="/api/add-task">
+    <input type="text" name="content">
+    <button type="submit">Ajouter</button>
+</form>
+
+<section>
+
+    <% for(let item of content){ %>
+        <article>
+            <p><%= item.content %></p>
+            <form action="/api/delete-task/<%= item._id %>" method="post"><button type="submit">Supprimer</button></form>
+        </article>
+    <% } %>
+
+</section>
+
+<% include partials/footer %>

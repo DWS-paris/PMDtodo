@@ -5,6 +5,7 @@ Importer les composants
     const express = require('express');
     const path = require('path');
     const ejs = require('ejs');
+    const mongoose = require('mongoose'); 
 
     // Routes
     const frontRoute = require('./routes/front');
@@ -14,9 +15,15 @@ Importer les composants
 /*
 Initialiser le serveur
 */
+    // Configuration des variables d'environnement
+    require('dotenv').config();
+
+    // Connexion à la BDD avec Mongoose
+    mongoose.connect(process.env.MONGO_HOST);
+    
     // Définition du serveur
     const app = express();
-    const port = process.env.PORT || 3000;
+    const port = process.env.PORT;
 
     // Définition du dossier statique des vues
     app.set( 'views', __dirname + '/www' );

@@ -3,7 +3,7 @@ Projet de cours basé sur le site todomvc.com.
 
 ## User stories
 Définition des actions de l'utilisateur :
-- [ ] En tant qu'utilisateur je peux ajouter une tache
+- [x] En tant qu'utilisateur je peux ajouter une tache
 - [ ] En tant qu'utilisateur je peux valider une tâche
 - [ ] En tant qu'utilisateur je peux supprimer une tâche
 - [ ] En tant qu'utilisateur je peux flitrer les tâches réalisés
@@ -39,8 +39,8 @@ Quand la propriété `state` est égale à `true`.
 
 ### 3. Comment une tâche est supprimée ?
 Chaque tâche présente un bouton qui, au clic, permet de supprimer l'objet
-- [ ] Je dois connaître la propriété `_id` de l'objet
-- [ ] Créer une route `api` pour supprimer l'objet de la base de données
+- [x] Je dois connaître la propriété `_id` de l'objet
+- [x] Créer une route `api` pour supprimer l'objet de la base de données
 
 
 ### 4. Comment les tâches sont filtrées ?
