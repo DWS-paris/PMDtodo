@@ -11,9 +11,8 @@ Définition des routes
 */
     router.get( '/', (req, res) => {
         mongoose.connect(process.env.MONGO_HOST, (err, db) => {
-            console.log('front')
             // Tester la connection
-            if(err) { res.send(err) } 
+            if(err) { res.render('index', {content : err}) } 
             else{
                 // Afficher les documents de la colletion myRecipe
                 db.collection('tasks').find().toArray((err, collection) => {

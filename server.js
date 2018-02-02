@@ -19,7 +19,7 @@ Initialiser le serveur
     require('dotenv').config();
 
     // Connexion à la BDD avec Mongoose
-    mongoose.connect(process.env.MONGO_HOST);
+    mongoose.connect('mongodb://127.0.0.1:27017/todomvc');
     
     // Définition du serveur
     const app = express();
@@ -30,7 +30,8 @@ Initialiser le serveur
     app.use( express.static(path.join(__dirname, 'www')) );
 
     // Définition du moteur de rendu
-    app.set( 'view engine', 'ejs' );
+    app.engine('html', require('ejs').renderFile);
+    app.set('view engine', 'html');
 
     // Définition des routes
     app.use('/', frontRoute);
