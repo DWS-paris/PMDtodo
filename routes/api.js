@@ -106,6 +106,31 @@ Définition des routes
             }            
         })
     });
+
+    // Editer l'état d'une tâche
+    router.put('/set-task-state/:id', (req, res) => {
+        // Ouvrir une connexion sur la base MongoDb
+        MongoClient.connect(`${process.env.MONGO_HOST}`, (err, client) =>{
+            const db = client.db(`${process.env.MONGO_DBNAME}`)
+
+            // Tester la connexion
+            if(err){ res.send(err) } 
+            else{
+                db.collection(process.env.MONGO_COLNAME, (err, tasks)=>{
+                    // Suppriumer la tâche
+                    tasks.update({_id: new ObjectId(req.params.id)}, {$set:{state: req.body.state}});
+
+                    // Vérification de la commande MongoDb
+                    if(err){  res.send({ msg:false }) } 
+                    else{
+                        res.send( { state : req.body.state } )
+                        // Fermer la connexion à la base MongoDb
+                        client.close()
+                    }
+                })
+            }            
+        })
+    });
 //
 
 /*

@@ -22,54 +22,6 @@ document.addEventListener('DOMContentLoaded', function()  {
                     this.apiUrl = null;
                 },
 
-                // Définition de l'objet ASYNC
-                defineAyncObject: function(object)  {
-                    // Vérification du type de requête
-                    if( this.asyncType === null ) { console.error('Vous devez définir un type de reqête') }
-                    else if( this.asyncType === 'GET' ) { this.asyncObject = { method: 'GET' } }
-
-                    // Configuration de l'objet
-                    else{
-                        this.asyncObject = {
-                            method: this.asyncType,
-                            body: JSON.stringify(object),
-                            headers: new Headers({
-                                'Content-Type': 'application/json'
-                            })
-                        };
-                    }
-                },
-
-                // Définition des URLs de l'API et du type de requête
-                defineApiUrl: function(type)  {
-                    switch(type){
-                        case 'POST':
-                            this.apiUrl = 'http://localhost:3000/api/add-task';
-                            this.asyncType = 'POST';
-                            break;
-        
-                        case 'PUT':
-                            this.apiUrl = 'http://localhost:3000/api/add-task';
-                            this.asyncType = 'PUT';
-                            break;
-        
-                        case 'DELETE':
-                            this.apiUrl = 'http://localhost:3000/api/delete-task';
-                            this.asyncType = 'DELETE';
-                            break;
-        
-                        case 'GET':
-                            this.apiUrl = 'http://localhost:3000/api/tasks';
-                            this.asyncType = 'GET';
-                            break;
-
-                        default:
-                            this.apiUrl = null;
-                            this.asyncType = null;
-                            break;
-                    };
-                },
-
                 // Charger la liste des tâches
                 loadTaskList: function()  {
                     // La fonction fetch() prend en paramètre l'adresse de l'API
@@ -132,27 +84,50 @@ document.addEventListener('DOMContentLoaded', function()  {
                     });
                 },
 
+                // Editer l'état d'une tâche
+                setTaskState: function(_id, state){
+                    fetch('http://localhost:3000/api/set-task-state/' + _id, {
+                        method: 'PUT',
+                        body: JSON.stringify({state: state.stateVal}), 
+                        headers: new Headers({ 'Content-Type': 'application/json' })
+                    })
+                    .then(res => res.json())
+
+                    .catch(error => console.error('Error:', error))
+
+                    .then(response => {
+                        document.getElementById(_id).classList.toggle('taskDone');
+                        document.getElementById(_id).setAttribute('data-task-state', response.state)
+                    });
+                },
+
                 // Ajouter une tâche dans le DOM
                 appendTask: function(task){
                     // Création de la balise HTML
                     var taskArticle = document.createElement("article");
                     taskArticle.id = task._id;
+                    taskArticle.setAttribute('data-task-state', task.state)
+                    if(task.state == true){ taskArticle.classList.add('taskDone') }
                     taskArticle.innerHTML = '<p>'+ task.content +'</p><ul data-id-object="'+ task._id +'"><li><button class="confirmTask"><i class="fa fa-check"></i></button></li><li><button data-id-object="'+ task._id +'" class="deleteTask"><i class="fa fa-times"></i></button></li></ul>';
 
                     // Ajout de la balise HTML dans le DOM
                     document.querySelector('#taskList').appendChild( taskArticle );
 
+                    // Ajout de les écouteurs d'événement
                     this.taskEventListener(task._id)
                 },
 
                 // Ajout des écouteurs d'événement sur les tâches
                 taskEventListener: function(_id){
+                    // Capter le clic sur le bouton confirmTask
                     document.querySelector('[data-id-object="'+ _id +'"] .confirmTask').addEventListener('click', function(){
-                        console.log('Confirm', _id);
+                        var activState = document.getElementById(_id).getAttribute('data-task-state');
+                        if(activState === 'true') { AsyncBot.setTaskState(_id, { stateVal: false }) }
+                        else{ AsyncBot.setTaskState(_id, { stateVal: true }) }
                     });
 
+                    // Capter le clic sur le bouton deleteTask
                     document.querySelector('[data-id-object="'+ _id +'"] .deleteTask').addEventListener('click', function(){
-                        console.log('Delete', _id);
                         AsyncBot.deleteTask(_id)
                     });
                 },
@@ -170,8 +145,6 @@ document.addEventListener('DOMContentLoaded', function()  {
                         // Vérifier le champs
                         if( newTodoContent.value.length >=1 ){
                             // Ajouter une tâche
-                            AsyncBot.defineApiUrl('POST');
-                            AsyncBot.defineAyncObject({ content: newTodoContent.value, state: false });
                             AsyncBot.addTask({ content: newTodoContent.value, state: false })
                         };
                     });
