@@ -119,6 +119,12 @@ document.addEventListener('DOMContentLoaded', function()  {
 
                 // Ajout des écouteurs d'événement sur les tâches
                 taskEventListener: function(_id){
+                    // Afficher la tâche
+                    window.setTimeout(function(){
+                        document.getElementById(_id).classList.add('open');
+                    }, 200);
+                    
+
                     // Capter le clic sur le bouton confirmTask
                     document.querySelector('[data-id-object="'+ _id +'"] .confirmTask').addEventListener('click', function(){
                         var activState = document.getElementById(_id).getAttribute('data-task-state');

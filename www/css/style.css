@@ -83,17 +83,21 @@ Tasklist
     }
 
     #taskList article {
-        border-bottom: .1rem solid rgba(91, 195, 176, .2);
-        padding-bottom: 1.5rem;
-        margin-bottom: 1.5rem;
-        height: 6.5rem;
+        height: 0rem;
         overflow: hidden;
 
         -webkit-transition: all .3s;
         transition: all .3s;
     }
 
-    #taskList article.taskDeleted {
+    #taskList article.open{
+        height: 6.5rem;
+        padding-bottom: 1.5rem;
+        margin-bottom: 1.5rem;
+        border-bottom: .1rem solid rgba(91, 195, 176, .2);
+    }
+
+    #taskList article.open.taskDeleted {
         height: 0;
         padding: 0;
         border: none;
