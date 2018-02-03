@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function()  {
                     .catch(error => console.error('Error:', error))
 
                     .then(response => {
-                        console.log(response)
+                        document.getElementById(_id).classList.add('taskDeleted')
                     });
                 },
 
@@ -136,6 +136,7 @@ document.addEventListener('DOMContentLoaded', function()  {
                 appendTask: function(task){
                     // Création de la balise HTML
                     var taskArticle = document.createElement("article");
+                    taskArticle.id = task._id;
                     taskArticle.innerHTML = '<p>'+ task.content +'</p><ul data-id-object="'+ task._id +'"><li><button class="confirmTask"><i class="fa fa-check"></i></button></li><li><button data-id-object="'+ task._id +'" class="deleteTask"><i class="fa fa-times"></i></button></li></ul>';
 
                     // Ajout de la balise HTML dans le DOM
