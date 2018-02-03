@@ -5,20 +5,26 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>My TODO MVC</title>
-        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
-        <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
-        <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
         <link rel="stylesheet" href="./css/style.css">
     </head>
     <body>
         <header>
-            <h1>PMDtodo MVC</h1>
+            <!-- <h1>PMDtodo MVC</h1> -->
         </header>
         <main>
+            <section id="addTask">
+                <form>
+                    <input type="text" id="newTodoContent">
+                    <button type="submit">OK</button>
+                </form>
+            </section>
 
+            <section id="taskList"></section>
         </main>
+        
         <footer>
-            <p>Under MIT Licence</p>
+            <!-- <p>Under MIT Licence</p> -->
         </footer>
+        <script src="./js/script.js"></script>
     </body>
 </html>

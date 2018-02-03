@@ -8,9 +8,10 @@ Import des composants de la route
     const bodyParser = require('body-parser');
 
     // Module
-    const mongoose = require('mongoose');
-    const ObjectId = mongoose.Schema.Types.ObjectId;
-    const MongooseTask = require('../models/task.mongoose');
+    const mongodb = require('mongodb');
+    const ObjectId = mongodb.ObjectID;
+    const MongoClient = mongodb.MongoClient;
+    const mongodbUrl = process.env.MONGO_HOST;
 
     // Middleware
     router.use(bodyParser.urlencoded({ extended: true }));
@@ -23,58 +24,87 @@ Définition des routes
 */
     // Afficher les tâches
     router.get('/tasks', (req, res) => {
-
-        mongoose.connect(process.env.MONGO_HOST, (err, db) => {
-            // Tester la connection
-            if(err) { res.send(err) } 
+        // Ouvrir une connexion sur la base MongoDb
+        MongoClient.connect(process.env.MONGO_HOST, (err, client) =>{
+            const db = client.db(process.env.MONGO_DBNAME)
+            // Tester la connexion
+            if(err){ res.send(err); client.close(); } 
             else{
-                // Afficher les documents de la colletion myRecipe
-                db.collection('tasks').find().toArray((err, tasks) => {
-                    // Tester la commande MongoDb
-                    if(err){ res.json( { err }) }
-                    else{ 
-                        // Envoyer les données au format json
-                        res.json( { tasks } )
-                    }
-                })
+
+                // Ajouter un document dans la collection 'list' => insert
+                db.collection(process.env.MONGO_COLNAME).find().toArray((err, tasks) => {
+
+                    // Vérification de a commande MongoDb
+                    if(err){ res.send(err) } 
+                    else{
+                        res.send(tasks)
+                        // Fermer la connexion à la base MongoDb
+                        client.close()
+                    };
+                });
             };
-            // Fermer la connexion
-            db.close();
         });
     });
     
     // Ajouter une tâche
     router.post('/add-task', (req, res) => {
-        // Utiliser le module MongoosePost pour ajouter une entrée dans le BDD
-        MongooseTask.create({
-            state: false,
-            content: req.body.content
-        },
-        
-        // Fonction de CB
-        (err, data) => {
-            // Error
-            if(err) return res.json( err );
+        // Récupération des données depuis la requête
+        let task = req.body;
 
-            // Success
-            res.json(data)
-        });
+        // Vérifier la présence de valeur dans la requête
+        if(!task.content){ res.status(400); res.json({ "error": "Bad Data" });
+        } else {
+
+            // Définition de la propriété isDone
+            task.state = false;
+
+            // Ouvrir une connexion sur la base MongoDb
+            MongoClient.connect(process.env.MONGO_HOST, (err, client) =>{
+                const db = client.db(process.env.MONGO_DBNAME)
+                // Tester la connexion
+                if(err){ res.send(err); client.close(); } 
+                else{
+
+                    // Ajouter un document dans la collection 'list' => insert
+                    db.collection(process.env.MONGO_COLNAME).insert([task], (err, data) => {
+
+                        // Vérification de a commande MongoDb
+                        if(err){ res.send(err) } 
+                        else{
+                            res.send(task)
+                            // Fermer la connexion à la base MongoDb
+                            client.close()
+                        };
+                    });
+                };
+            });
+        };
     });
 
     // Supprimer une tâche
-    router.post('/delete-task/:id', (req, res) => {
+    router.delete('/delete-task/:id', (req, res) => {
 
-        // Utiliser le module MongoosePost pour ajouter une entrée dans le BDD
-        MongooseTask.remove({ _id: req.params.id },
-        
-        // Fonction de CB
-        (err, data) => {
-            // Error
-            if(err) return res.json( err );
+        // Ouvrir une connexion sur la base MongoDb
+        MongoClient.connect(`${process.env.MONGO_HOST}`, (err, client) =>{
+            const db = client.db(`${process.env.MONGO_DBNAME}`)
 
-            // Success
-            res.json(data)
-        });
+            // Tester la connexion
+            if(err){ res.send(err) } 
+            else{
+                db.collection(process.env.MONGO_COLNAME, (err, tasks)=>{
+                    // Suppriumer la tâche
+                    tasks.deleteOne({ _id: new ObjectId(req.params.id) });
+
+                    // Vérification de la commande MongoDb
+                    if(err){  res.send({ msg:false }) } 
+                    else{
+                        res.send( { msg:true } )
+                        // Fermer la connexion à la base MongoDb
+                        client.close()
+                    }
+                })
+            }            
+        })
     });
 //
 

@@ -1,4 +1,180 @@
-header, main, footer{
-    max-width: 60rem;
-    margin: auto;
-}
+/*
+Reset
+*/
+    @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+    @import url('//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css');
+
+    *{
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    html{
+        font-size: 62.5;
+    }
+
+    body{
+        font-size: 1.5rem;
+        font-family: sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-font-smoothing: antialiased;
+        font-smoothing: antialiased;
+    }
+
+    header, main, footer{
+        max-width: 60rem;
+        margin: auto;
+    }
+
+    ul{
+        list-style: none;
+    }
+
+    *:focus{
+        border-color: #5dc2af !important;
+    }
+
+    input{
+        font-size: 3.5rem;
+        font-weight: 100;
+        margin: 0;
+    }
+
+    button{
+        color: #5dc2af;
+        border: .1rem solid #5dc2af;
+        background: transparent;
+        margin: 0;
+
+        -webkit-transition: all .3s;
+        transition: all .3s;
+    }
+
+    button:hover{
+        color: white;
+        background: #5dc2af;
+        border-color: #5dc2af;
+    }
+
+    button.deleteTask{
+        color: #97344c;
+        border-color: #97344c;
+    }
+
+    button.deleteTask:hover{
+        color: white;
+        background: #97344c;
+    }
+    
+/**/
+
+/* 
+Tasklist
+*/
+    #taskList article, #taskList article ul, form{
+        display: -ms-flex;
+        display: -moz-flex;
+        display: flex;
+
+        -moz-align-items: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+
+    #taskList article {
+        border-bottom: .1rem solid rgba(91, 195, 176, .2);
+        padding-bottom: 1.5rem;
+        margin-bottom: 1.5rem;
+        height: auto;
+        overflow: hidden;
+
+        -webkit-transition: all .3s;
+        transition: all .3s;
+    }
+
+    #taskList article.taskDeleted{
+        height: 0;
+    }
+
+    #taskList article p{
+        font-size: 3rem;
+        width: 80%;
+        margin: 0;
+        position: relative;
+    }
+
+    #taskList article p::before {
+        content: '';
+        display: block;
+        height: 1.1rem;
+        width: 0%;
+        background-color: #eee;
+
+        position: absolute;
+        left: 0;
+        top: 46%;
+        opacity: .7;
+
+        -webkit-transition: all .3s;
+        transition: all .3s;
+    }
+
+    #taskList article.taskDone p::before{
+        width: 100%;
+    }
+
+    #taskList article ul{
+        width: 20%;
+        margin: 0;
+
+        -moz-justify-content: flex-end;
+        -webkit-justify-content: flex-end;
+        justify-content: flex-end;
+    }
+
+    #taskList article li{
+        margin: 0;
+        margin-left: .5rem;
+    }
+
+    #taskList button {
+        margin: 0;
+        padding: .5rem 1.5rem;
+        line-height: 1;
+    }
+/**/
+
+/* 
+Formulaire
+*/
+    #addTask {
+        padding: 3rem;
+        margin-bottom: 4rem;
+        background: rgba(91, 195, 176, .2);
+    }
+
+    #addTask form {
+        margin-bottom: 0;
+    }
+
+    #addTask form input {
+        margin-right: 1rem;
+        padding: 3rem 2rem 3.5rem 2rem;
+        background-color: white;
+        border-color: #59c4b1;
+    }
+    
+    #addTask form button {
+        font-size: 2rem;
+        line-height: 0;
+        color: white;
+        background-color: #5dc2af;
+        padding: 3.3rem 2.7rem;
+    }
+
+    #addTask form button:hover{
+        background-color: white;
+        color: #5dc2af !important;
+    }
+/**/

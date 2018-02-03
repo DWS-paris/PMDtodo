@@ -19,7 +19,7 @@ Initialiser le serveur
     require('dotenv').config();
 
     // Connexion à la BDD avec Mongoose
-    mongoose.connect('mongodb://127.0.0.1:27017/todomvc');
+    mongoose.connect(process.env.MONGO_HOST);
     
     // Définition du serveur
     const app = express();
