@@ -80,7 +80,7 @@ Tasklist
         padding: 0 3rem;
     }
 
-    #taskList article, #taskList article ul, form{
+    #taskList article, #taskList article ul, form, #taskListFooter, #taskListFooter ul{
         display: -ms-flex;
         display: -moz-flex;
         display: flex;
@@ -161,6 +161,30 @@ Tasklist
 /**/
 
 /* 
+Task list footer
+*/
+    #taskListFooter {
+        padding: 0 3rem;
+        margin-top: 3rem;
+
+        -webkit-justify-content: space-between;
+        -moz-justify-content: space-between;
+        justify-content: space-between;
+    }
+
+    #taskListFooter p, #taskListFooter ul, #taskListFooter li {
+        margin: 0;
+    }
+
+    #taskListFooter button {
+        padding: 1rem;
+        height: auto;
+        line-height: 0;
+        margin-left: .5rem;
+    }
+/**/
+
+/* 
 Formulaire
 */
     #addTask {
@@ -197,12 +221,12 @@ Formulaire
 /* 
 Footer
 */
-footer {
-    font-size: 1rem;
-    text-transform: uppercase;
-    text-align: center;
-    margin-top: 6rem;
-}
+    footer {
+        font-size: 1rem;
+        text-transform: uppercase;
+        text-align: center;
+        margin-top: 6rem;
+    }
 
     footer p {
         margin: 0;
