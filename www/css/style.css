@@ -69,14 +69,44 @@ Reset
     button.deleteTask:hover, button.deleteTask:focus{
         color: white;
         background: #97344c;
-    }
-    
+    }    
 /**/
+
+
+/* 
+Hauteur des blocks
+*/
+    header, footer{
+        height: 5vh
+    }
+
+    #addTask{
+        height: 15vh;
+    }
+
+    #taskList{
+        height: 60vh;
+    }
+
+    #taskListFooter{
+        height: 10vh;
+    }
+/**/
+
 
 /* 
 Tasklist
 */
     #taskList {
+        padding: 3rem;
+        overflow: hidden;
+    
+        -webkit-transition: all .3s;
+        transition: all .3s;
+    }
+
+    #taskList.close{
+        height: 0vh;
         padding: 0 3rem;
     }
 
@@ -165,7 +195,6 @@ Task list footer
 */
     #taskListFooter {
         padding: 0 3rem;
-        margin-top: 3rem;
 
         -webkit-justify-content: space-between;
         -moz-justify-content: space-between;
@@ -189,7 +218,6 @@ Formulaire
 */
     #addTask {
         padding: 3rem;
-        margin-bottom: 4rem;
         background: rgba(91, 195, 176, .2);
     }
 
@@ -225,7 +253,6 @@ Footer
         font-size: 1rem;
         text-transform: uppercase;
         text-align: center;
-        margin-top: 6rem;
     }
 
     footer p {

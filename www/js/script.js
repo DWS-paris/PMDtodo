@@ -51,6 +51,34 @@ document.addEventListener('DOMContentLoaded', function()  {
                     .catch(function (err) { return console.error(err) })
                 },
 
+                // Charger la liste filtrée des tâches
+                loadFiltretedTasks: function(filter){
+                    // La fonction fetch() prend en paramètre l'adresse de l'API
+                    fetch('http://localhost:3000/api/tasks/' + filter).then(function (data) {
+                            
+                        // Les données sont présentes => renvoyer une Promise de type 'resolve'
+                        if (data.ok) { return Promise.resolve(data) }
+
+                        // Les données sont présentes => renvoyer une Promise de type 'reject'
+                        else { return Promise.reject(new Error('Problème dans la requête')) }
+                    })
+
+                    // Traiter le réponse
+                    .then(function (data) { return data.json() })
+
+                    // Manipuler les données de la réponse
+                    .then(function (data) {
+
+                        // Ajouter les tâches dans le DOM
+                        for( var i = 0; i < data.length; i++ ){
+                            TodoBot.appendTask(data[i]);
+                        };
+                     })
+
+                    // Capter l'erreur
+                    .catch(function (err) { return console.error(err) })
+                },
+
                 // Ajouter une tâche
                 addTask: function(object)  {
                     fetch('http://localhost:3000/api/add-task', {
@@ -147,7 +175,19 @@ document.addEventListener('DOMContentLoaded', function()  {
                     TodoBot.setTaskData();
                 },
 
-                // 2diter le footer de la liste des tâches
+                // Vider la liste des tâches
+                removeTasks: function(){
+                    var taskList = document.getElementById('taskList');
+
+                    taskList.classList.add('close');
+
+                    window.setTimeout(function(){
+                        taskList.innerHTML = '';
+                        taskList.classList.remove('close');
+                    }, 500)
+                },
+
+                // Editer le footer de la liste des tâches
                 setTaskData: function(task){
                     // Récupération des balises HTML
                     var taskTodo = document.getElementById('taskTodo');
@@ -201,6 +241,52 @@ document.addEventListener('DOMContentLoaded', function()  {
                             TodoBot.addTask({ content: newTodoContent.value, state: false })
                         };
                     });
+                },
+
+                // Gestion des boutons dans le footer de la liste des tâches
+                getFilterBtnClick: function(){
+                    var btnAllTasks = document.getElementById('btnAllTasks');
+                    var btnToDoTacks = document.getElementById('btnToDoTacks');
+                    var btnDoneTasks = document.getElementById('btnDoneTasks');
+                    
+                    btnToDoTacks.addEventListener('click', function(){
+                        // Lancer le filtre
+                        TodoBot.removeTasks();
+                        window.setTimeout(function(){
+                            TodoBot.loadFiltretedTasks('isDone');
+                        }, 600)
+
+                        // Gestion des class
+                        this.classList.add('active');
+                        btnAllTasks.classList.remove('active');
+                        btnDoneTasks.classList.remove('active');
+                    });
+
+                    btnDoneTasks.addEventListener('click', function(){
+                        // Lancer le filtre
+                        TodoBot.removeTasks();
+                        window.setTimeout(function(){
+                            TodoBot.loadFiltretedTasks('toDo');
+                        }, 600)
+
+                        // Gestion des class
+                        this.classList.add('active');
+                        btnAllTasks.classList.remove('active');
+                        btnToDoTacks.classList.remove('active');
+                    });
+
+                    btnAllTasks.addEventListener('click', function(){
+                        // Lancer le filtre
+                        TodoBot.removeTasks();
+                        window.setTimeout(function(){
+                            TodoBot.loadTaskList();
+                        }, 600)
+
+                        // Gestion des class
+                        this.classList.add('active');
+                        btnToDoTacks.classList.remove('active');
+                        btnDoneTasks.classList.remove('active');
+                    });
                 }
             //
         };
@@ -215,5 +301,8 @@ document.addEventListener('DOMContentLoaded', function()  {
 
         // Capter la soumission du formulaire
         TodoBot.getFormSubmit();
+
+        // Capter le click sur les boutons du footer de la liste des tâches
+        TodoBot.getFilterBtnClick();
     //
 });
