@@ -55,7 +55,7 @@ Reset
         transition: all .3s;
     }
 
-    button:hover{
+    button:hover, button:focus{
         color: white;
         background: #5dc2af;
         border-color: #5dc2af;
@@ -66,7 +66,7 @@ Reset
         border-color: #97344c;
     }
 
-    button.deleteTask:hover{
+    button.deleteTask:hover, button.deleteTask:focus{
         color: white;
         background: #97344c;
     }

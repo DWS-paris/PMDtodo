@@ -3,13 +3,15 @@ document.addEventListener('DOMContentLoaded', function()  {
     /*
     Gestion des requêtes serveur
     */
-        var AsyncBot = {
+        var TodoBot = {
             /*
             Définition des propriétés de l'objet
             */
                 asyncObject: null,
                 asyncType: null,
                 apiUrl: null,
+                tasksDone: 0,
+                taskToDo: 0,
             //
 
             /*
@@ -41,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function()  {
                     .then(function (data) {
                         // Ajouter les tâches dans le DOM
                         for( var i = 0; i < data.length; i++ ){
-                            AsyncBot.appendTask(data[i]);
+                            TodoBot.appendTask(data[i]);
                         };
                      })
 
@@ -62,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function()  {
 
                     .then(response => {
                         // Ajouter la tâche dans le DOM
-                        AsyncBot.appendTask({content: response.content, state:false, _id: response._id})
+                        TodoBot.appendTask({content: response.content, state:false, _id: response._id})
 
                         // Vider le formulaire
                         document.querySelector('#newTodoContent').value = '';
@@ -80,7 +82,14 @@ document.addEventListener('DOMContentLoaded', function()  {
                     .catch(error => console.error('Error:', error))
 
                     .then(response => {
-                        document.getElementById(_id).classList.add('taskDeleted')
+                        document.getElementById(_id).classList.add('taskDeleted');
+
+                        // Mettre à jour le footer la la liste des tâches
+                        var taskState = document.querySelector('[data-id-object="'+ _id +'"] .deleteTask').getAttribute('data-state-object');
+                        if(taskState === 'true') { TodoBot.tasksDone -= 1 }
+                        else { TodoBot.taskToDo -= 1 };
+                        TodoBot.setTaskData();
+                        
                     });
                 },
 
@@ -97,7 +106,13 @@ document.addEventListener('DOMContentLoaded', function()  {
 
                     .then(response => {
                         document.getElementById(_id).classList.toggle('taskDone');
-                        document.getElementById(_id).setAttribute('data-task-state', response.state)
+                        document.getElementById(_id).setAttribute('data-task-state', response.state);
+                        document.querySelector('[data-id-object="'+ _id +'"] .deleteTask').setAttribute('data-state-object', response.state);
+                        
+                        // Mettre à jour le footer la la liste des tâches
+                        if( response.state === false ){ TodoBot.taskToDo += 1, TodoBot.tasksDone -= 1 }
+                        else{ TodoBot.tasksDone += 1, TodoBot.taskToDo -= 1 }
+                        TodoBot.setTaskData();
                     });
                 },
 
@@ -105,20 +120,52 @@ document.addEventListener('DOMContentLoaded', function()  {
                 appendTask: function(task){
                     // Création de la balise HTML
                     var taskArticle = document.createElement("article");
+
+                    // Ajouter une ID à l'article
                     taskArticle.id = task._id;
+
+                    // Ajouter un attribut à l'article
                     taskArticle.setAttribute('data-task-state', task.state)
-                    if(task.state == true){ taskArticle.classList.add('taskDone') }
-                    taskArticle.innerHTML = '<p>'+ task.content +'</p><ul data-id-object="'+ task._id +'"><li><button class="confirmTask"><i class="fa fa-check"></i></button></li><li><button data-id-object="'+ task._id +'" class="deleteTask"><i class="fa fa-times"></i></button></li></ul>';
+
+                    // Définir si la tpache est faite ou non
+                    if(task.state == true){ 
+                        taskArticle.classList.add('taskDone');
+                        TodoBot.tasksDone += 1;
+
+                    } else { TodoBot.taskToDo += 1 };
+                    
+                    // Ajouter du contenu HTML à l'article
+                    taskArticle.innerHTML = '<p>'+ task.content +'</p><ul data-id-object="'+ task._id +'"><li><button class="confirmTask"><i class="fa fa-check"></i></button></li><li><button data-id-object="'+ task._id +'" data-state-object="'+ task.state +'" class="deleteTask"><i class="fa fa-times"></i></button></li></ul>';
 
                     // Ajout de la balise HTML dans le DOM
                     document.querySelector('#taskList').appendChild( taskArticle );
 
                     // Ajout de les écouteurs d'événement
-                    this.taskEventListener(task._id)
+                    this.taskEventListener(task._id);
+
+                    // Mettre à jour le footer la la liste des tâches
+                    TodoBot.setTaskData();
+                },
+
+                // 2diter le footer de la liste des tâches
+                setTaskData: function(task){
+                    // Récupération des balises HTML
+                    var taskTodo = document.getElementById('taskTodo');
+                    var taskDone = document.getElementById('taskDone');
+
+                    // Calcule des tâches faites
+                    if( TodoBot.taskToDo >= 2 ){ taskTodo.innerHTML = '<b>' + TodoBot.taskToDo + '</b> tâches à faire' }
+                    else if( TodoBot.taskToDo === 1 ){ taskTodo.innerHTML = '<b>1</b> tâche à faire' }
+                    else{ taskTodo.innerHTML = '<b>0</b> tâche à faire' }
+
+                    // Calcule des tâches à faire
+                    if( TodoBot.tasksDone >= 2 ){ taskDone.innerHTML = ' | <b>' + TodoBot.tasksDone + '</b> tâches faites' }
+                    else if( TodoBot.tasksDone === 1 ){ taskDone.innerHTML = ' | <b>' + TodoBot.tasksDone + '</b> tâche faite' }
+                    else{ taskDone.innerHTML = '' }
                 },
 
                 // Ajout des écouteurs d'événement sur les tâches
-                taskEventListener: function(_id){
+                taskEventListener: function(_id){TodoBot
                     // Afficher la tâche
                     window.setTimeout(function(){
                         document.getElementById(_id).classList.add('open');
@@ -128,18 +175,18 @@ document.addEventListener('DOMContentLoaded', function()  {
                     // Capter le clic sur le bouton confirmTask
                     document.querySelector('[data-id-object="'+ _id +'"] .confirmTask').addEventListener('click', function(){
                         var activState = document.getElementById(_id).getAttribute('data-task-state');
-                        if(activState === 'true') { AsyncBot.setTaskState(_id, { stateVal: false }) }
-                        else{ AsyncBot.setTaskState(_id, { stateVal: true }) }
+                        if(activState === 'true') { TodoBot.setTaskState(_id, { stateVal: false }) }
+                        else{ TodoBot.setTaskState(_id, { stateVal: true }) }
                     });
 
                     // Capter le clic sur le bouton deleteTask
                     document.querySelector('[data-id-object="'+ _id +'"] .deleteTask').addEventListener('click', function(){
-                        AsyncBot.deleteTask(_id)
+                        TodoBot.deleteTask(_id)
                     });
                 },
 
                 // Gestion du formulaire
-                getFormSubmit: function(){
+                getFormSubmit: function(){TodoBot
                     // Récupération du champs
                     var newTodoContent = document.querySelector('#newTodoContent');
 
@@ -151,7 +198,7 @@ document.addEventListener('DOMContentLoaded', function()  {
                         // Vérifier le champs
                         if( newTodoContent.value.length >=1 ){
                             // Ajouter une tâche
-                            AsyncBot.addTask({ content: newTodoContent.value, state: false })
+                            TodoBot.addTask({ content: newTodoContent.value, state: false })
                         };
                     });
                 }
@@ -164,9 +211,9 @@ document.addEventListener('DOMContentLoaded', function()  {
     Lancer la ToDo
     */
         // Charger la liste des tâches
-        AsyncBot.loadTaskList();
+        TodoBot.loadTaskList();
 
         // Capter la soumission du formulaire
-        AsyncBot.getFormSubmit();
+        TodoBot.getFormSubmit();
     //
 });
