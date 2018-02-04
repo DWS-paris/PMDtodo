@@ -6,9 +6,9 @@ Définition des actions de l'utilisateur :
 - [x] En tant qu'utilisateur je peux ajouter une tache
 - [x] En tant qu'utilisateur je peux valider une tâche
 - [x] En tant qu'utilisateur je peux supprimer une tâche
-- [ ] En tant qu'utilisateur je peux filtrer les tâches réalisés
-- [ ] En tant qu'utilisateur je peux filtrer les tâches à réaliser
-- [ ] En tant qu'utilisateur je peux supprimer toutes les tâches réalisées
+- [x] En tant qu'utilisateur je peux filtrer les tâches réalisés
+- [x] En tant qu'utilisateur je peux filtrer les tâches à réaliser
+- [x] En tant qu'utilisateur je peux supprimer toutes les tâches réalisées
 
 ## Mise en place du projet
 Etapes à suivre pour préparer le projet PMDtodo
