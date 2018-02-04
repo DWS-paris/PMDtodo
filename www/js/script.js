@@ -26,6 +26,10 @@ document.addEventListener('DOMContentLoaded', function()  {
 
                 // Charger la liste des tâches
                 loadTaskList: function()  {
+                    // Réinitaliser les données
+                    TodoBot.tasksDone = 0;
+                    TodoBot.taskToDo = 0;
+
                     // La fonction fetch() prend en paramètre l'adresse de l'API
                     fetch('http://localhost:3000/api/tasks').then(function (data) {
                             
@@ -53,6 +57,10 @@ document.addEventListener('DOMContentLoaded', function()  {
 
                 // Charger la liste filtrée des tâches
                 loadFiltretedTasks: function(filter){
+                    // Réinitaliser les données
+                    TodoBot.tasksDone = 0;
+                    TodoBot.taskToDo = 0;
+
                     // La fonction fetch() prend en paramètre l'adresse de l'API
                     fetch('http://localhost:3000/api/tasks/' + filter).then(function (data) {
                             
@@ -189,6 +197,7 @@ document.addEventListener('DOMContentLoaded', function()  {
 
                 // Editer le footer de la liste des tâches
                 setTaskData: function(task){
+
                     // Récupération des balises HTML
                     var taskTodo = document.getElementById('taskTodo');
                     var taskDone = document.getElementById('taskDone');
@@ -196,11 +205,11 @@ document.addEventListener('DOMContentLoaded', function()  {
                     // Calcule des tâches faites
                     if( TodoBot.taskToDo >= 2 ){ taskTodo.innerHTML = '<b>' + TodoBot.taskToDo + '</b> tâches à faire' }
                     else if( TodoBot.taskToDo === 1 ){ taskTodo.innerHTML = '<b>1</b> tâche à faire' }
-                    else{ taskTodo.innerHTML = '<b>0</b> tâche à faire' }
+                    else{ taskTodo.innerHTML = '' }
 
                     // Calcule des tâches à faire
-                    if( TodoBot.tasksDone >= 2 ){ taskDone.innerHTML = ' | <b>' + TodoBot.tasksDone + '</b> tâches faites' }
-                    else if( TodoBot.tasksDone === 1 ){ taskDone.innerHTML = ' | <b>' + TodoBot.tasksDone + '</b> tâche faite' }
+                    if( TodoBot.tasksDone >= 2 ){ taskDone.innerHTML = ' <b>' + TodoBot.tasksDone + '</b> tâches faites' }
+                    else if( TodoBot.tasksDone === 1 ){ taskDone.innerHTML = ' <b>' + TodoBot.tasksDone + '</b> tâche faite' }
                     else{ taskDone.innerHTML = '' }
                 },
 
@@ -253,7 +262,7 @@ document.addEventListener('DOMContentLoaded', function()  {
                         // Lancer le filtre
                         TodoBot.removeTasks();
                         window.setTimeout(function(){
-                            TodoBot.loadFiltretedTasks('isDone');
+                            TodoBot.loadFiltretedTasks('toDo');
                         }, 600)
 
                         // Gestion des class
@@ -266,7 +275,7 @@ document.addEventListener('DOMContentLoaded', function()  {
                         // Lancer le filtre
                         TodoBot.removeTasks();
                         window.setTimeout(function(){
-                            TodoBot.loadFiltretedTasks('toDo');
+                            TodoBot.loadFiltretedTasks('isDone');
                         }, 600)
 
                         // Gestion des class

@@ -20,6 +20,8 @@ Reset
         -webkit-font-smoothing: antialiased;
         -moz-font-smoothing: antialiased;
         font-smoothing: antialiased;
+
+        margin: 0;
     }
 
     header, main, footer{
@@ -76,20 +78,15 @@ Reset
 /* 
 Hauteur des blocks
 */
-    header, footer{
-        height: 5vh
+    header{
     }
 
-    #addTask{
-        height: 15vh;
+    main{
+        min-height: 50rem;
     }
 
-    #taskList{
-        height: 60vh;
-    }
-
-    #taskListFooter{
-        height: 10vh;
+    footer{
+        min-height: 10.5rem;
     }
 /**/
 
@@ -98,7 +95,7 @@ Hauteur des blocks
 Tasklist
 */
     #taskList {
-        padding: 3rem;
+        padding: 3rem 0;
         overflow: hidden;
     
         -webkit-transition: all .3s;
@@ -194,7 +191,8 @@ Tasklist
 Task list footer
 */
     #taskListFooter {
-        padding: 0 3rem;
+        padding: 0;
+        margin-bottom: 5rem;
 
         -webkit-justify-content: space-between;
         -moz-justify-content: space-between;
@@ -211,14 +209,27 @@ Task list footer
         line-height: 0;
         margin-left: .5rem;
     }
+
+    #taskTodo b {
+        color: #5dc2af;
+    }
+
+    #taskDone b {
+        color: #97344c;
+    }
+
+    #taskListFooter span{
+        margin-right: 1rem;
+    }
 /**/
 
 /* 
 Formulaire
 */
     #addTask {
-        padding: 3rem;
-        background: rgba(91, 195, 176, .2);
+        padding: 2rem;
+        background: rgba(91, 195, 176, .1);
+        margin-top: 2rem;
     }
 
     #addTask form {
@@ -226,23 +237,10 @@ Formulaire
     }
 
     #addTask form input {
-        margin-right: 1rem;
-        padding: 3rem 2rem 3.5rem 2rem;
+        padding: 2.5rem 1rem 3rem 1.5rem;
+        font-size: 3rem;
         background-color: white;
         border-color: #59c4b1;
-    }
-    
-    #addTask form button {
-        font-size: 2rem;
-        line-height: 0;
-        color: white;
-        background-color: #5dc2af;
-        padding: 3.3rem 2.7rem;
-    }
-
-    #addTask form button:hover{
-        background-color: white;
-        color: #5dc2af !important;
     }
 /**/
 
