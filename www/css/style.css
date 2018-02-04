@@ -27,6 +27,10 @@ Reset
         margin: auto;
     }
 
+    a{
+        color: #5dc2af;
+    }
+
     ul{
         list-style: none;
     }
@@ -72,6 +76,10 @@ Reset
 /* 
 Tasklist
 */
+    #taskList {
+        padding: 0 3rem;
+    }
+
     #taskList article, #taskList article ul, form{
         display: -ms-flex;
         display: -moz-flex;
@@ -183,5 +191,20 @@ Formulaire
     #addTask form button:hover{
         background-color: white;
         color: #5dc2af !important;
+    }
+/**/
+
+/* 
+Footer
+*/
+footer {
+    font-size: 1rem;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 6rem;
+}
+
+    footer p {
+        margin: 0;
     }
 /**/
