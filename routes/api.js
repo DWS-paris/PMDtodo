@@ -76,7 +76,7 @@ Définition des routes
                 };
             });
 
-        } else { res.send({error: 'Le filtre de la reqête est erroné'}) }
+        } else { res.send({error:'Le filtre de la reqête est erroné'}) }
     });
     
     // Ajouter une tâche

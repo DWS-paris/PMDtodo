@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function()  {
                         if (data.ok) { return Promise.resolve(data) }
 
                         // Les données sont présentes => renvoyer une Promise de type 'reject'
-                        else { return Promise.reject(new Error('Problème dans la requête')) }
+                        else { return Promise.reject(new Error('Problème de requête, veuillez actualiser la page et vérifier votre connexion.')) }
                     })
 
                     // Traiter le réponse
@@ -52,7 +52,9 @@ document.addEventListener('DOMContentLoaded', function()  {
                      })
 
                     // Capter l'erreur
-                    .catch(function (err) { return console.error(err) })
+                    .catch(function (err) { 
+                        TodoBot.errorHandeler({error: 404, msg: err})
+                    })
                 },
 
                 // Charger la liste filtrée des tâches
@@ -76,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function()  {
 
                     // Manipuler les données de la réponse
                     .then(function (data) {
-
+                        console.log(data)
                         // Ajouter les tâches dans le DOM
                         for( var i = 0; i < data.length; i++ ){
                             TodoBot.appendTask(data[i]);
@@ -296,6 +298,13 @@ document.addEventListener('DOMContentLoaded', function()  {
                         btnToDoTacks.classList.remove('active');
                         btnDoneTasks.classList.remove('active');
                     });
+                },
+
+                // Gestion des erreurs
+                errorHandeler: function(error){
+                    console.log(error)
+                    document.getElementById('errorMsg').innerHTML = '<i class="fa fa-exclamation-circle"></i> <span>'+ error.msg +'</span>'
+                    document.getElementById('errorHandeler').classList.add('open')
                 }
             //
         };
