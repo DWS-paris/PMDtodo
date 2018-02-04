@@ -6,8 +6,8 @@ Définition des actions de l'utilisateur :
 - [x] En tant qu'utilisateur je peux ajouter une tache
 - [x] En tant qu'utilisateur je peux valider une tâche
 - [x] En tant qu'utilisateur je peux supprimer une tâche
-- [ ] En tant qu'utilisateur je peux flitrer les tâches réalisés
-- [ ] En tant qu'utilisateur je peux flitrer les tâches à réaliser
+- [ ] En tant qu'utilisateur je peux filtrer les tâches réalisés
+- [ ] En tant qu'utilisateur je peux filtrer les tâches à réaliser
 - [ ] En tant qu'utilisateur je peux supprimer toutes les tâches réalisées
 
 ## Mise en place du projet
@@ -45,4 +45,4 @@ Chaque tâche présente un bouton qui, au clic, permet de supprimer l'objet
 
 ### 4. Comment les tâches sont filtrées ?
 Je dois sélectionner tous les objets et n'afficher que ceux dont la propriété `state` est égale à `true` (ou `false`)
-- [ ] Créer une route `api` pour sélectionnher les tâches
+- [x] Créer une route `api` pour sélectionnher les tâches

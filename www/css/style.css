@@ -55,7 +55,7 @@ Reset
         transition: all .3s;
     }
 
-    button:hover, button:focus{
+    button:hover, button:focus, button.active{
         color: white;
         background: #5dc2af;
         border-color: #5dc2af;

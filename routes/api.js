@@ -45,6 +45,39 @@ Définition des routes
             };
         });
     });
+
+    // Afficher les tâches selon le filtre
+    router.get('/tasks/:filter', (req, res) => {
+        // Analyser la requête
+        let paramFilter = null;
+        if( req.params.filter === "isDone" ) { paramFilter = true }
+        else if( req.params.filter === "toDo" ) { paramFilter = false }
+
+        // Vérifier la présence d'un paramêtre dans le requête
+        if( paramFilter != null ) {
+            // Ouvrir une connexion sur la base MongoDb
+            MongoClient.connect(process.env.MONGO_HOST, (err, client) =>{
+                const db = client.db(process.env.MONGO_DBNAME)
+                // Tester la connexion
+                if(err){ res.send(err); client.close(); } 
+                else{
+
+                    // Ajouter un document dans la collection 'list' => insert
+                    db.collection(process.env.MONGO_COLNAME).find({ state: paramFilter } ).toArray((err, tasks) => {
+
+                        // Vérification de a commande MongoDb
+                        if(err){ res.send(err) } 
+                        else{
+                            res.send(tasks)
+                            // Fermer la connexion à la base MongoDb
+                            client.close()
+                        };
+                    });
+                };
+            });
+
+        } else { res.send({error: 'Le filtre de la reqête est erroné'}) }
+    });
     
     // Ajouter une tâche
     router.post('/add-task', (req, res) => {
