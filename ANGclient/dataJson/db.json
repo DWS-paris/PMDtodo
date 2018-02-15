@@ -4,13 +4,15 @@
             "id": 0, 
             "title": "server", 
             "content": "Lorem ipsum dolor" ,
-            "type": "WORK"
+            "type": "WORK",
+            "isDone": false
         },
         { 
             "id": 1, 
             "title": "json", 
             "content": "Lorem ipsum dolor" ,
-            "type": "FUN"
+            "type": "FUN",
+            "isDone": false
         }
     ]
 }

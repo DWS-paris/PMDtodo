@@ -31,7 +31,7 @@ Exporter le service
       // Success
       .then( data => this.dataFromApi(data) )
       // Error
-      .catch( err )
+      .catch( err => this.handleError(err) )
     }
 
 
