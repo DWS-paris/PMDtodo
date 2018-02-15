@@ -44,6 +44,24 @@ export class TodoFormComponent implements OnInit {
       this.errorMsg.title.active = true
     }
 
+    if( this.formObject.todoContent.length >= 5 ){
+      // Supprimer une erreur
+      this.formObject.error -= 1;
+
+    } else{
+      // Afficher un message d'erreur
+      this.errorMsg.content.active = true
+    }
+
+    if( this.formObject.todoType !== "NULL" ){
+      // Supprimer une erreur
+      this.formObject.error -= 1;
+
+    } else{
+      // Afficher un message d'erreur
+      this.errorMsg.type.active = true
+    }
+
 
   };
 

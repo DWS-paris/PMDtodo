@@ -11,10 +11,18 @@ Binding d'événement
     (focus)="errorMsg.title.active = false"
   >
 
-  <label for="todoContent">Contenu</label>
-  <textarea name="todoContent" [(ngModel)]="formObject.todoContent"></textarea>
+  <label for="todoContent">Contenu <span *ngIf="errorMsg.content.active" >{{ errorMsg.content.msg }}</span></label>
+  <textarea 
+    name="todoContent" 
+    [(ngModel)]="formObject.todoContent"
+    (focus)="errorMsg.content.active = false"
+  ></textarea>
 
-  <select name="todoType" [(ngModel)]="formObject.todoType">
+  <label for="todoType">Type <span *ngIf="errorMsg.type.active" >{{ errorMsg.type.msg }}</span></label>
+  <select name="todoType" 
+    [(ngModel)]="formObject.todoType" 
+    (focus)="errorMsg.type.active = false"
+  >
     <option value="NULL">- Sélectionner -</option>
     <option value="WORK">Travail</option>
     <option value="FUN">Loisir</option>
