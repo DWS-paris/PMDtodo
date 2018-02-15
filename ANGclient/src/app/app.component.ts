@@ -27,6 +27,9 @@ Exporter le composant
 */
   export class AppComponent implements OnInit {
 
+    // Créer une variable pour la collection de tâches
+    public tasksCollection: Array<TaskModel>;
+
     // Injecter le service dans le constructeur
     constructor(
       private myService: TasksService
@@ -35,7 +38,7 @@ Exporter le composant
     // Créer une fonction pour charger les tâches depuis le service
     private getAllTasks = (): void => {
       this.myService.getTasks()
-      .then( data => console.log(data) )
+      .then( data => this.tasksCollection = data )
       .catch( err => console.error(err) )
     };
 

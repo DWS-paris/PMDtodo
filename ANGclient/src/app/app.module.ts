@@ -10,12 +10,14 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { TodoFormComponent } from './partials/todo-form/todo-form.component';
+import { SingleTaskComponent } from './partials/single-task/single-task.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodoFormComponent
+    TodoFormComponent,
+    SingleTaskComponent
   ],
   // Renseigner les modules dans le tableau des imports
   imports: [

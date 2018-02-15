@@ -1,2 +1,14 @@
 <!-- Intéger un partial/composant -->
 <app-todo-form></app-todo-form>
+
+<!-- 
+Avant l'itération, s'assurer que la collection des données est pleine
+-->
+<section *ngIf="tasksCollection">
+
+  <!-- Itération sur l'article -->
+  <article *ngFor="let item of tasksCollection">
+    <app-single-task [singleItem]="item" ></app-single-task>
+  </article>
+
+</section>
