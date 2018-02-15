@@ -1,0 +1,24 @@
+<!-- 
+Binding d'événement
+-->
+<form action="test.php" (submit)="submitForm()" >
+    <!-- 
+    Utilisation du ngModel : data binding aller/retour
+  -->
+  <label for="todoTitle">Titre <span *ngIf="errorMsg.title.active" >{{ errorMsg.title.msg }}</span> </label>
+  <input type="text" name="todoTitle" 
+    [(ngModel)]="formObject.todoTitle" 
+    (focus)="errorMsg.title.active = false"
+  >
+
+  <label for="todoContent">Contenu</label>
+  <textarea name="todoContent" [(ngModel)]="formObject.todoContent"></textarea>
+
+  <select name="todoType" [(ngModel)]="formObject.todoType">
+    <option value="NULL">- Sélectionner -</option>
+    <option value="WORK">Travail</option>
+    <option value="FUN">Loisir</option>
+  </select>
+
+  <button type="submit">Ajouter</button>
+</form>

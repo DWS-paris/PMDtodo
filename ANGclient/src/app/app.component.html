@@ -1,0 +1,16 @@
+<!-- 
+Data Binding
+-->
+<h1>{{ appTitle }}</h1>
+
+{{ dataCollection }}
+<!-- 
+Itération en Angular => *ngFor
+-->
+<ul *ngFor="let item of dataCollection">
+  <!-- itération -->
+  <li *ngIf=" item != true ">{{item}}</li>
+</ul>
+
+<!-- Intéger un partial/composant -->
+<app-todo-form></app-todo-form>
