@@ -5,6 +5,9 @@ Importer les class du composant
 
   // Importer le service
   import { TasksService } from './services/tasks.service';
+
+  // Importer l'interface objet
+  import { TaskModel } from './models/task.model';
 //
 
 /*
@@ -24,10 +27,7 @@ Exporter le composant
 */
   export class AppComponent implements OnInit {
 
-    // Fonction pour attendre le chargement du composant
-    ngOnInit() {
-      // this.myService.helloService();
-    };
+    
 
     // Injecter le service dans le constructeur
     constructor(
@@ -45,5 +45,19 @@ Exporter le composant
       true,
       1234567
     ];
-  }
+
+
+    // Créer une fonction pour charger les tâches depuis le service
+    private getAllTasks = (): void => {
+      this.myService.getTasks()
+      .then( data => console.log(data) )
+      .catch( err => console.error(err) )
+    };
+
+    // Fonction pour attendre le chargement du composant
+    ngOnInit() {
+      // Charger la liste de tâches
+      this.getAllTasks();
+    };
+  };
 //
