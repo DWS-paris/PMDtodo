@@ -27,25 +27,10 @@ Exporter le composant
 */
   export class AppComponent implements OnInit {
 
-    
-
     // Injecter le service dans le constructeur
     constructor(
       private myService: TasksService
     ){};
-
-    // Créer une variable
-    public appTitle: string = `My ToDo MVC`;
-
-    // Créer une collection de données
-    public dataCollection: Array<string|boolean|number> = [
-      `Tester le data binding`,
-      `Tester les itérations Angular`,
-      `Boire un café`,
-      true,
-      1234567
-    ];
-
 
     // Créer une fonction pour charger les tâches depuis le service
     private getAllTasks = (): void => {
