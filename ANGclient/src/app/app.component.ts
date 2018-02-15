@@ -1,7 +1,10 @@
 /*
 Importer les class du composant
 */
-  import { Component } from '@angular/core';
+  import { Component, OnInit } from '@angular/core';
+
+  // Importer le service
+  import { TasksService } from './services/tasks.service';
 //
 
 /*
@@ -10,14 +13,27 @@ Définir le composant
   @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
+
+    // Renseigner le service dans le tableau de providers
+    providers: [ TasksService ]
   })
 //
 
 /*
 Exporter le composant
 */
-  export class AppComponent {
+  export class AppComponent implements OnInit {
+
+    // Fonction pour attendre le chargement du composant
+    ngOnInit() {
+      // this.myService.helloService();
+    };
+
+    // Injecter le service dans le constructeur
+    constructor(
+      private myService: TasksService
+    ){};
+
     // Créer une variable
     public appTitle: string = `My ToDo MVC`;
 

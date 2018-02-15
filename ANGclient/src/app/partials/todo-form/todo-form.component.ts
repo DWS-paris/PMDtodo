@@ -33,6 +33,9 @@ export class TodoFormComponent implements OnInit {
 
   // Créer une fonction pour la soumission du formulaire
   public submitForm = () => {
+
+    // Réinitialiser la valeur de error
+    this.formObject.error = 3;
     
     // Vérifier la présence de données
     if( this.formObject.todoTitle.length >= 5 ){
@@ -61,6 +64,15 @@ export class TodoFormComponent implements OnInit {
       // Afficher un message d'erreur
       this.errorMsg.type.active = true
     }
+
+    /*
+    Validation finale : formObject.error doit être égale à 0
+    */
+      if( this.formObject.error === 0 ){
+        // Le formulaire est validé
+        console.log( 'OK' );
+      };
+    //
 
 
   };

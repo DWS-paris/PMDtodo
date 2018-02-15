@@ -1,0 +1,16 @@
+{
+    "tasks": [
+        { 
+            "id": 0, 
+            "title": "server", 
+            "content": "Lorem ipsum dolor" ,
+            "type": "WORK"
+        },
+        { 
+            "id": 1, 
+            "title": "json", 
+            "content": "Lorem ipsum dolor" ,
+            "type": "FUN"
+        }
+    ]
+}
