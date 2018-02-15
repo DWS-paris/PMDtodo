@@ -1,6 +1,11 @@
 # PMDtodo
 Projet de cours basé sur le site todomvc.com.
 
+PORT=3000
+MONGO_HOST=mongodb://127.0.0.1:27017/todomvc
+MONGO_DBNAME=todomvc
+MONGO_COLNAME=tasks
+
 ## User stories
 Définition des actions de l'utilisateur :
 - [x] En tant qu'utilisateur je peux ajouter une tache
