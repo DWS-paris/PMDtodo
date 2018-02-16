@@ -20,7 +20,7 @@ Exporter le service
   export class TasksService {
 
     // Créer une variable pour l'adresse de l'API
-    private apiUrl: string = `http://localhost:3001/tasks`;
+    private apiUrl: string = `http://localhost:3001/api`;
 
     // Injecter la class Http dans le service
     constructor( private http: Http ) {};
@@ -30,7 +30,7 @@ Exporter le service
     Créer une fonction pour afficher la liste des tâches
     */
       public getTasks = (): Promise<TaskModel[]> => {
-        return this.http.get(this.apiUrl).toPromise()
+        return this.http.get(`${this.apiUrl}/tasks`).toPromise()
         // Success
         .then( data => this.dataFromApi(data) )
         // Error
@@ -42,7 +42,7 @@ Exporter le service
     Créer une fonction pour ajouter une tâche
     */
       public addTask = ( newTask: TaskModel ): Promise<TaskModel> => {
-        return this.http.post(this.apiUrl, newTask).toPromise()
+        return this.http.post(`${this.apiUrl}/add-task`, newTask).toPromise()
         // Success
         .then( data => this.dataFromApi(data) )
         // Error
@@ -54,11 +54,11 @@ Exporter le service
     Créer une fonction pour supprimer une tâche
     */
       public deleteTask = ( id: number ): Promise<TaskModel> => {
-        return this.http.delete( `${this.apiUrl}/${id}` ).toPromise()
+        return this.http.delete(`${this.apiUrl}/delete-task/${id}`).toPromise()
         // Success
         .then( data => this.dataFromApi(data) )
         // Error
-        .catch( err => this.handleError(err) );
+        .catch( err => this.handleError(err) ); 
       };
     //
 
@@ -66,7 +66,7 @@ Exporter le service
     Créer une fonction pour inverser la valuer isDone d'une tâche
     */
       public setTask = ( task: TaskModel ): Promise<TaskModel> => {
-        return this.http.put( `${this.apiUrl}/${task.id}`, task ).toPromise()
+        return this.http.put( `${this.apiUrl}/set-task-state/${task._id}`, task ).toPromise()
         // Success
         .then( data => this.dataFromApi(data) )
         // Error

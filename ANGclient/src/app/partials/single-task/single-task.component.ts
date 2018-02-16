@@ -14,7 +14,7 @@ import { TaskModel } from '../../models/task.model';
         <p>{{singleItem.content}} <b>{{singleItem.type}}</b></p>
       </div>
       <button (click)="emitSetTask(singleItem)">Valider</button>
-      <button (click)="emitDeleteTask(singleItem.id)">Supprimer</button>
+      <button (click)="emitDeleteTask(singleItem._id)">Supprimer</button>
     </article>
   `
 })
