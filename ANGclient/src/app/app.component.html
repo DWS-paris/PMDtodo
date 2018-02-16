@@ -3,14 +3,15 @@
   Binding d'un événement perso
 -->
 <app-todo-form 
-(sendData)="addNewTask($event)"
-[formObject]="taskFormObject" 
+  (sendData)="addNewTask($event)"
+  [formObject]="taskFormObject" 
 ></app-todo-form>
 
 <!-- 
 Avant l'itération, s'assurer que la collection des données est pleine
 -->
-<section *ngIf="tasksCollection">
+<h2>Liste des tâches</h2>
+<section id="taskList" *ngIf="tasksCollection">
 
   <!-- Itération sur l'article -->
   <article *ngFor="let item of tasksCollection">
@@ -18,7 +19,6 @@ Avant l'itération, s'assurer que la collection des données est pleine
       (setTask)="setTask($event)"   
       (deleteTask)="deleteTask($event)"
       [singleItem]="item" 
-      
     ></app-single-task>
   </article>
 

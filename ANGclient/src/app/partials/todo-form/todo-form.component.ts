@@ -8,8 +8,7 @@ import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-todo-form',
-  templateUrl: './todo-form.component.html',
-  styles: []
+  templateUrl: './todo-form.component.html'
 })
 export class TodoFormComponent implements OnInit {
 
@@ -18,6 +17,9 @@ export class TodoFormComponent implements OnInit {
 
   // Création d'un événement
   @Output() sendData = new EventEmitter;
+
+  // Création d'une variable pour afficher le formulaire
+  public addNewTask: boolean = false;
 
 
   // Créer un objet pour les messages d'erreur

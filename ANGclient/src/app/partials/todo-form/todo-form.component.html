@@ -1,32 +1,39 @@
 <!-- 
 Binding d'événement
 -->
-<form action="test.php" (submit)="submitForm()" >
+<button id="addTask" (click)=" addNewTask = !addNewTask "><span *ngIf="!addNewTask">Ajouter une tâche</span><span *ngIf="addNewTask">Masquer le formulaire</span></button>
+<form action="test.php" (submit)="submitForm()" [ngClass]="{open: addNewTask}">
     <!-- 
     Utilisation du ngModel : data binding aller/retour
   -->
-  <label for="todoTitle">Titre <span *ngIf="errorMsg.title.active" >{{ errorMsg.title.msg }}</span> </label>
-  <input type="text" name="todoTitle" 
-    [(ngModel)]="formObject.title" 
-    (focus)="errorMsg.title.active = false"
-  >
+  <fieldset>
+    <label for="todoTitle">Titre <span *ngIf="errorMsg.title.active" >{{ errorMsg.title.msg }}</span> </label>
+    <input type="text" name="todoTitle" 
+      [(ngModel)]="formObject.title" 
+      (focus)="errorMsg.title.active = false"
+    >
+  </fieldset>
 
-  <label for="todoContent">Contenu <span *ngIf="errorMsg.content.active" >{{ errorMsg.content.msg }}</span></label>
-  <textarea 
-    name="todoContent" 
-    [(ngModel)]="formObject.content"
-    (focus)="errorMsg.content.active = false"
-  ></textarea>
+  <fieldset>
+    <label for="todoContent">Contenu <span *ngIf="errorMsg.content.active" >{{ errorMsg.content.msg }}</span></label>
+    <textarea 
+      name="todoContent" 
+      [(ngModel)]="formObject.content"
+      (focus)="errorMsg.content.active = false"
+    ></textarea>
+  </fieldset>
 
-  <label for="todoType">Type <span *ngIf="errorMsg.type.active" >{{ errorMsg.type.msg }}</span></label>
-  <select name="todoType" 
-    [(ngModel)]="formObject.type" 
-    (focus)="errorMsg.type.active = false"
-  >
-    <option value="NULL">- Sélectionner -</option>
-    <option value="WORK">Travail</option>
-    <option value="FUN">Loisir</option>
-  </select>
+  <fieldset>
+    <label for="todoType">Type <span *ngIf="errorMsg.type.active" >{{ errorMsg.type.msg }}</span></label>
+    <select name="todoType" 
+      [(ngModel)]="formObject.type" 
+      (focus)="errorMsg.type.active = false"
+    >
+      <option value="NULL">- Sélectionner -</option>
+      <option value="WORK">Travail</option>
+      <option value="FUN">Loisir</option>
+    </select>
+  </fieldset>
 
-  <button type="submit">Ajouter</button>
+  <button type="submit">Ajouter</button> 
 </form>

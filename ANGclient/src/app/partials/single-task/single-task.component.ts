@@ -10,11 +10,13 @@ import { TaskModel } from '../../models/task.model';
   template: `
     <article>
       <div [ngClass]="{ taskDone: singleItem.isDone }" >
-        <h2>{{singleItem.title}}</h2>
-        <p>{{singleItem.content}} <b>{{singleItem.type}}</b></p>
+        <h3>{{singleItem.title}} <b>{{singleItem.type}}</b></h3>
+        <p>{{singleItem.content}}</p>
       </div>
-      <button (click)="emitSetTask(singleItem)">Valider</button>
-      <button (click)="emitDeleteTask(singleItem._id)">Supprimer</button>
+      <aside>
+        <button (click)="emitSetTask(singleItem)"><span *ngIf="singleItem.isDone">Activer</span><span *ngIf="!singleItem.isDone">Valider</span></button>
+        <button (click)="emitDeleteTask(singleItem._id)">Supprimer</button>
+      </aside>
     </article>
   `
 })
