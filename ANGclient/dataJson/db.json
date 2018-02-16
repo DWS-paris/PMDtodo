@@ -1,22 +1,15 @@
 {
   "tasks": [
     {
-      "id": 0,
-      "title": "server",
-      "content": "Lorem ipsum dolor",
-      "type": "WORK",
-      "isDone": true
-    },
-    {
-      "id": 1,
-      "title": "json",
-      "content": "Lorem ipsum dolor",
+      "title": "qsdwsfsd",
+      "content": "fbsdfbsdgb",
       "type": "FUN",
-      "isDone": true
+      "isDone": false,
+      "id": 1
     },
     {
-      "title": "wsdfqsdf",
-      "content": "qsdqsdfqsfd",
+      "title": "dsbfxvbxc",
+      "content": "vcvxcvb",
       "type": "FUN",
       "isDone": false,
       "id": 2

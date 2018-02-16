@@ -46,7 +46,31 @@ Exporter le service
         // Success
         .then( data => this.dataFromApi(data) )
         // Error
-        .catch( err => this.handleError(err) )
+        .catch( err => this.handleError(err) );
+      };
+    //
+
+    /*
+    Créer une fonction pour supprimer une tâche
+    */
+      public deleteTask = ( id: number ): Promise<TaskModel> => {
+        return this.http.delete( `${this.apiUrl}/${id}` ).toPromise()
+        // Success
+        .then( data => this.dataFromApi(data) )
+        // Error
+        .catch( err => this.handleError(err) );
+      };
+    //
+
+    /*
+    Créer une fonction pour inverser la valuer isDone d'une tâche
+    */
+      public setTask = ( task: TaskModel ): Promise<TaskModel> => {
+        return this.http.put( `${this.apiUrl}/${task.id}`, task ).toPromise()
+        // Success
+        .then( data => this.dataFromApi(data) )
+        // Error
+        .catch( err => this.handleError(err) );
       }
     //
 

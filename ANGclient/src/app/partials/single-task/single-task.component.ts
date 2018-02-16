@@ -2,6 +2,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 
 // Importer la class Input pour récupérer la valeur d'une variable du composant parent
 import { Input } from '@angular/core';
+import { TaskModel } from '../../models/task.model';
 
 @Component({
   selector: 'app-single-task',
@@ -12,8 +13,8 @@ import { Input } from '@angular/core';
         <h2>{{singleItem.title}}</h2>
         <p>{{singleItem.content}} <b>{{singleItem.type}}</b></p>
       </div>
-      <button (click)="emitSetTask(singleItem.id)">Valider</button>
-      <button (click)="emitDeleteTask(singleItem.id)" >Supprimer</button>
+      <button (click)="emitSetTask(singleItem)">Valider</button>
+      <button (click)="emitDeleteTask(singleItem.id)">Supprimer</button>
     </article>
   `
 })
@@ -27,8 +28,8 @@ export class SingleTaskComponent {
   @Output() deleteTask = new EventEmitter;
 
   // Définir les fonction pour émettre les événements
-  public emitSetTask = ( id: number ) => {
-    this.setTask.emit(id)
+  public emitSetTask = ( item: TaskModel ) => {
+    this.setTask.emit(item)
   };
 
   public emitDeleteTask = ( id: number ) => {

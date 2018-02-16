@@ -66,21 +66,41 @@ Exporter le composant
 
       // Appeler la fonction du service pour ajouter une tâche
       this.myService.addTask(this.tempTask)
-      .then( uniqTask => console.log(uniqTask) )
+      .then( uniqTask => {
+        // Ajouter l'objet dans la collection
+        this.tasksCollection.push( uniqTask )
+        // Vider le formulaire
+        this.taskFormObject = {
+          error: 3,
+          title: ``,
+          content: ``,
+          type: `NULL`,
+          isDone: false
+        }
+      } )
       .catch( err => console.error(err) )
     };
 
 
     // Fonction pour éditer une tâche
-    public setTask = ( evt: number ) => {
+    public setTask = ( evt: TaskModel ) => {
+      // Inverser la valeur isDone
+      evt.isDone = !evt.isDone;
+
       // Appeler la fonction du service
-      console.log( evt );
+      this.myService.setTask( evt )
+      .then( uniqTask => console.log(uniqTask) )
+      .catch( err => console.error(err) )
     }
 
     // Fonction pour supprimer une tâche
     public deleteTask = ( evt: number ) => {
       // Appeler la fonction du service
-      console.log( evt );
+      this.myService.deleteTask( evt )
+      .then( data => {
+        this.getAllTasks();
+      })
+      .catch( err => console.log(err) )
     };
 
     // Fonction pour attendre le chargement du composant
