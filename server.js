@@ -6,6 +6,7 @@ Importer les composants
     const path = require('path');
     const ejs = require('ejs');
     const mongoose = require('mongoose'); 
+    const cors = require('cors')
 
     // Routes
     const frontRoute = require('./routes/front');
@@ -23,6 +24,7 @@ Initialiser le serveur
     
     // Définition du serveur
     const app = express();
+    app.use(cors())
     const port = process.env.PORT;
 
     // Définition du dossier statique des vues
