@@ -7,20 +7,20 @@ Binding d'événement
   -->
   <label for="todoTitle">Titre <span *ngIf="errorMsg.title.active" >{{ errorMsg.title.msg }}</span> </label>
   <input type="text" name="todoTitle" 
-    [(ngModel)]="formObject.todoTitle" 
+    [(ngModel)]="formObject.title" 
     (focus)="errorMsg.title.active = false"
   >
 
   <label for="todoContent">Contenu <span *ngIf="errorMsg.content.active" >{{ errorMsg.content.msg }}</span></label>
   <textarea 
     name="todoContent" 
-    [(ngModel)]="formObject.todoContent"
+    [(ngModel)]="formObject.content"
     (focus)="errorMsg.content.active = false"
   ></textarea>
 
   <label for="todoType">Type <span *ngIf="errorMsg.type.active" >{{ errorMsg.type.msg }}</span></label>
   <select name="todoType" 
-    [(ngModel)]="formObject.todoType" 
+    [(ngModel)]="formObject.type" 
     (focus)="errorMsg.type.active = false"
   >
     <option value="NULL">- Sélectionner -</option>

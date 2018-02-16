@@ -29,6 +29,16 @@ Exporter le composant
 
     // Créer une variable pour la collection de tâches
     public tasksCollection: Array<TaskModel>;
+    public tempTask: any;
+
+    // Créer un objet pour gérer le formulaire
+    public taskFormObject: TaskModel = {
+      error: 3,
+      title: ``,
+      content: ``,
+      type: `NULL`,
+      isDone: false
+    };
 
     // Injecter le service dans le constructeur
     constructor(
@@ -39,6 +49,24 @@ Exporter le composant
     private getAllTasks = (): void => {
       this.myService.getTasks()
       .then( data => this.tasksCollection = data )
+      .catch( err => console.error(err) )
+    };
+
+    // Créer une fonction pour ajouter une tâche dans la BDD
+    public addNewTask = (evt: TaskModel): void => {
+      console.log(evt)
+
+      // Définition de la tâche à ajouter
+      this.tempTask = {
+        title: evt.title,
+        content: evt.content,
+        type: evt.type,
+        isDone: false
+      };
+
+      // Appeler la fonction du service pour ajouter une tâche
+      this.myService.addTask(this.tempTask)
+      .then( uniqTask => console.log(uniqTask) )
       .catch( err => console.error(err) )
     };
 

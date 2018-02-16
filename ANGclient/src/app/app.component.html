@@ -1,5 +1,11 @@
-<!-- Intéger un partial/composant -->
-<app-todo-form></app-todo-form>
+<!-- 
+  Intéger un partial/composant 
+  Binding d'un événement perso
+-->
+<app-todo-form 
+(sendData)="addNewTask($event)"
+[formObject]="taskFormObject" 
+></app-todo-form>
 
 <!-- 
 Avant l'itération, s'assurer que la collection des données est pleine

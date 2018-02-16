@@ -25,34 +25,47 @@ Exporter le service
     // Injecter la class Http dans le service
     constructor( private http: Http ) {};
 
-    // Créer une fonction pour afficher la liste des tâches
-    public getTasks = (): Promise<TaskModel[]> => {
-      return this.http.get(this.apiUrl).toPromise()
-      // Success
-      .then( data => this.dataFromApi(data) )
-      // Error
-      .catch( err => this.handleError(err) )
-    }
 
+    /* 
+    Créer une fonction pour afficher la liste des tâches
+    */
+      public getTasks = (): Promise<TaskModel[]> => {
+        return this.http.get(this.apiUrl).toPromise()
+        // Success
+        .then( data => this.dataFromApi(data) )
+        // Error
+        .catch( err => this.handleError(err) )
+      };
+    //
 
+    /*
+    Créer une fonction pour ajouter une tâche
+    */
+      public addTask = ( newTask: TaskModel ): Promise<TaskModel> => {
+        return this.http.post(this.apiUrl, newTask).toPromise()
+        // Success
+        .then( data => this.dataFromApi(data) )
+        // Error
+        .catch( err => this.handleError(err) )
+      }
+    //
 
-    public helloService = () => {
-      alert('Hello from the Service');
-    };
+    /*
+    Fonctions de traitement des Promises
+    */
+      // Traitement des réponses JSON
+      private dataFromApi(res: Response) {
+        return res.json() || { };
+      };
 
+      // Traitement des erreurs
+      private handleError (error: any) {
+        let errMsg = (error.message) ? error.message :
+        error.status ? `${error.status} - ${error.statusText}` : 'Server error';
 
-    // Traitement des réponses JSON
-    private dataFromApi(res: Response) {
-      return res.json() || { };
-    }
-
-    // Traitement des erreurs
-    private handleError (error: any) {
-      let errMsg = (error.message) ? error.message :
-      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-
-      return Promise.reject(errMsg);
-    }
+        return Promise.reject(errMsg);
+      };
+    //
 
   }
 //

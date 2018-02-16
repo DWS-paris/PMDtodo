@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+/*
+Importer les class pour générer un événement à capter dans le composant parent
+*/
+import { Output, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-todo-form',
@@ -7,13 +13,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodoFormComponent implements OnInit {
 
-  // Créer un objet pour gérer le formulaire
-  public formObject = {
-    error: 3,
-    todoTitle: ``,
-    todoContent: ``,
-    todoType: `NULL`
-  };
+  // Importer la valeur de la variable depuis le composant parent
+  @Input() formObject;
+
+  // Création d'un événement
+  @Output() sendData = new EventEmitter;
+
 
   // Créer un objet pour les messages d'erreur
   public errorMsg = {
@@ -38,7 +43,7 @@ export class TodoFormComponent implements OnInit {
     this.formObject.error = 3;
     
     // Vérifier la présence de données
-    if( this.formObject.todoTitle.length >= 5 ){
+    if( this.formObject.title.length >= 5 ){
       // Supprimer une erreur
       this.formObject.error -= 1;
 
@@ -47,7 +52,7 @@ export class TodoFormComponent implements OnInit {
       this.errorMsg.title.active = true
     }
 
-    if( this.formObject.todoContent.length >= 5 ){
+    if( this.formObject.content.length >= 5 ){
       // Supprimer une erreur
       this.formObject.error -= 1;
 
@@ -56,7 +61,7 @@ export class TodoFormComponent implements OnInit {
       this.errorMsg.content.active = true
     }
 
-    if( this.formObject.todoType !== "NULL" ){
+    if( this.formObject.type !== "NULL" ){
       // Supprimer une erreur
       this.formObject.error -= 1;
 
@@ -69,8 +74,8 @@ export class TodoFormComponent implements OnInit {
     Validation finale : formObject.error doit être égale à 0
     */
       if( this.formObject.error === 0 ){
-        // Le formulaire est validé
-        console.log( 'OK' );
+        // Le formulaire est validé : émettre l'événement sendData
+        this.sendData.emit(this.formObject);
       };
     //
 
