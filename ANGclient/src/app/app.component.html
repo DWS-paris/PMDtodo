@@ -14,7 +14,13 @@ Avant l'itération, s'assurer que la collection des données est pleine
 
   <!-- Itération sur l'article -->
   <article *ngFor="let item of tasksCollection">
-    <app-single-task [singleItem]="item" ></app-single-task>
+    <app-single-task 
+      (setTask)="setTask($event)"   
+      (deleteTask)="deleteTask($event)"
+      
+      [singleItem]="item" 
+      
+    ></app-single-task>
   </article>
 
 </section>

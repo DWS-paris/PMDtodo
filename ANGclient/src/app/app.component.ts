@@ -70,6 +70,19 @@ Exporter le composant
       .catch( err => console.error(err) )
     };
 
+
+    // Fonction pour éditer une tâche
+    public setTask = ( evt: number ) => {
+      // Appeler la fonction du service
+      console.log( evt );
+    }
+
+    // Fonction pour supprimer une tâche
+    public deleteTask = ( evt: number ) => {
+      // Appeler la fonction du service
+      console.log( evt );
+    };
+
     // Fonction pour attendre le chargement du composant
     ngOnInit() {
       // Charger la liste de tâches
