@@ -5,9 +5,16 @@ import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-single-task',
+  styles: [ `.taskDone{ opacity: .5 }` ],
   template: `
-    <h2>{{singleItem.title}}</h2>
-    <p>{{singleItem.content}} <b>{{singleItem.type}}</b></p>
+    <article>
+      <div [ngClass]="{ taskDone: singleItem.isDone }" >
+        <h2>{{singleItem.title}}</h2>
+        <p>{{singleItem.content}} <b>{{singleItem.type}}</b></p>
+      </div>
+      <button>Valider</button> <button>Supprimer
+      </button>
+    </article>
   `
 })
 export class SingleTaskComponent implements OnInit {

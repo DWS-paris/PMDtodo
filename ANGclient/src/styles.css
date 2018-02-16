@@ -1,1 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+h2 {
+    font-size: 3rem;
+    margin-bottom: 0;
+}
+
+app-single-task article  {
+    border-bottom: .1rem solid #eee;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+}

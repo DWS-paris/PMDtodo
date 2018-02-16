@@ -5,14 +5,14 @@
       "title": "server",
       "content": "Lorem ipsum dolor",
       "type": "WORK",
-      "isDone": false
+      "isDone": true
     },
     {
       "id": 1,
       "title": "json",
       "content": "Lorem ipsum dolor",
       "type": "FUN",
-      "isDone": false
+      "isDone": true
     },
     {
       "title": "wsdfqsdf",
