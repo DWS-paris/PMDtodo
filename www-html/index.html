@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>My TODO MVC</title>
+        <link rel="stylesheet" href="./css/style.css">
+    </head>
+    <body>
+        <header>
+            <section id="addTask">
+                <form>
+                    <input type="text" id="newTodoContent">
+                </form>
+            </section>
+        </header>
+
+        <main>
+            <section id="taskList"></section>
+        </main>
+        
+        <footer>
+            <section id="taskListFooter">
+                <p><span id="taskTodo"><b>0</b> tâche à faire</span> <span id="taskDone"></span></p>
+                <ul>
+                    <li><button id="btnAllTasks" class="active">Toutes</button></li>
+                    <li><button id="btnToDoTacks">A faire</button></li>
+                    <li><button id="btnDoneTasks">Faite(s)</button></li>
+                </ul>
+            </section>
+
+            <p>Under <a href="https://github.com/DWS-paris/PMDtodo/blob/master/LICENSE" target="_blank">MIT</a> Licence - 2018</p>
+            <p>By <a href="http://digitalworkshop.fr">Julien Noyer</a></p>
+        </footer>
+
+        <section id="errorHandeler">
+            <p id="errorMsg"><i class="fa fa-exclamation-circle"></i> <span>Problème de requête, veuillez actualiser la page et vérifier votre connexion.</span></p>
+        </section>
+        
+        <script src="./js/script.js"></script>
+    </body>
+</html>
