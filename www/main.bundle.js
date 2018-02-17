@@ -396,7 +396,8 @@ var TasksService = /** @class */ (function () {
         var _this = this;
         this.http = http;
         // Créer une variable pour l'adresse de l'API
-        this.apiUrl = "http://localhost:3001/api";
+        // private apiUrl: string = `http://localhost:3001/api`;
+        this.apiUrl = "http://188.166.96.168:3001/api";
         /*
         Créer une fonction pour afficher la liste des tâches
         */

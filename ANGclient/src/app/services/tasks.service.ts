@@ -20,7 +20,8 @@ Exporter le service
   export class TasksService {
 
     // Créer une variable pour l'adresse de l'API
-    private apiUrl: string = `http://localhost:3001/api`;
+    // private apiUrl: string = `http://localhost:3001/api`;
+    private apiUrl: string = `http://188.166.96.168:3001/api`;
 
     // Injecter la class Http dans le service
     constructor( private http: Http ) {};
