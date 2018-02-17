@@ -33,7 +33,7 @@ Exporter le composant
 
     // Créer un objet pour gérer le formulaire
     public taskFormObject: TaskModel = {
-      error: 3,
+      error: 2,
       title: ``,
       content: ``,
       type: `NULL`,

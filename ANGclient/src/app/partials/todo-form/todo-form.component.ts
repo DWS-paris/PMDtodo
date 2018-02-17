@@ -25,11 +25,7 @@ export class TodoFormComponent implements OnInit {
   // Créer un objet pour les messages d'erreur
   public errorMsg = {
     title: {
-      msg: `Minimum 5 caractère pour le titre`,
-      active: false
-    },
-    content: {
-      msg: `Minimum 5 caractère pour le contenu`,
+      msg: `Vous devez donner un titre`,
       active: false
     },
     type: {
@@ -42,7 +38,7 @@ export class TodoFormComponent implements OnInit {
   public submitForm = () => {
 
     // Réinitialiser la valeur de error
-    this.formObject.error = 3;
+    this.formObject.error = 2;
     
     // Vérifier la présence de données
     if( this.formObject.title.length >= 5 ){
@@ -52,15 +48,6 @@ export class TodoFormComponent implements OnInit {
     } else{
       // Afficher un message d'erreur
       this.errorMsg.title.active = true
-    }
-
-    if( this.formObject.content.length >= 5 ){
-      // Supprimer une erreur
-      this.formObject.error -= 1;
-
-    } else{
-      // Afficher un message d'erreur
-      this.errorMsg.content.active = true
     }
 
     if( this.formObject.type !== "NULL" ){

@@ -20,7 +20,7 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_lazy_route_resource lazy re
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- \n  Intéger un partial/composant \n  Binding d'un événement perso\n-->\n<app-todo-form \n  (sendData)=\"addNewTask($event)\"\n  [formObject]=\"taskFormObject\" \n></app-todo-form>\n\n<!-- \nAvant l'itération, s'assurer que la collection des données est pleine\n-->\n<h2>Liste des tâches</h2>\n<section id=\"taskList\" *ngIf=\"tasksCollection\">\n\n  <!-- Itération sur l'article -->\n  <article *ngFor=\"let item of tasksCollection\">\n    <app-single-task \n      (setTask)=\"setTask($event)\"   \n      (deleteTask)=\"deleteTask($event)\"\n      [singleItem]=\"item\" \n    ></app-single-task>\n  </article>\n\n</section>\n"
+module.exports = "<!-- \n  Intéger un partial/composant \n  Binding d'un événement perso\n-->\n<app-todo-form \n  (sendData)=\"addNewTask($event)\"\n  [formObject]=\"taskFormObject\" \n></app-todo-form>\n\n<!-- \nAvant l'itération, s'assurer que la collection des données est pleine\n-->\n<section id=\"taskList\" *ngIf=\"tasksCollection\">\n  <!-- Itération sur l'article -->\n  <article *ngFor=\"let item of tasksCollection\">\n    <app-single-task \n      (setTask)=\"setTask($event)\"   \n      (deleteTask)=\"deleteTask($event)\"\n      [singleItem]=\"item\" \n    ></app-single-task>\n  </article>\n</section>\n"
 
 /***/ }),
 
@@ -56,7 +56,7 @@ var AppComponent = /** @class */ (function () {
         this.myService = myService;
         // Créer un objet pour gérer le formulaire
         this.taskFormObject = {
-            error: 3,
+            error: 2,
             title: "",
             content: "",
             type: "NULL",
@@ -237,7 +237,7 @@ var SingleTaskComponent = /** @class */ (function () {
         core_1.Component({
             selector: 'app-single-task',
             styles: [".taskDone{ opacity: .5 }"],
-            template: "\n    <article>\n      <div [ngClass]=\"{ taskDone: singleItem.isDone }\" >\n        <h3>{{singleItem.title}} <b>{{singleItem.type}}</b></h3>\n        <p>{{singleItem.content}}</p>\n      </div>\n      <aside>\n        <button (click)=\"emitSetTask(singleItem)\"><span *ngIf=\"singleItem.isDone\">Activer</span><span *ngIf=\"!singleItem.isDone\">Valider</span></button>\n        <button (click)=\"emitDeleteTask(singleItem._id)\">Supprimer</button>\n      </aside>\n    </article>\n  "
+            template: "\n    <article class=\"singleTask\">\n      <div [ngClass]=\"{ taskDone: singleItem.isDone }\" >\n        <h3>{{singleItem.title}} <b>{{singleItem.type}}</b></h3>\n        <p>{{singleItem.content}}</p>\n      </div>\n      <aside>\n        <button (click)=\"emitSetTask(singleItem)\"><span *ngIf=\"singleItem.isDone\"><i class=\"fas fa-undo-alt\"></i></span><span *ngIf=\"!singleItem.isDone\"><i class=\"fas fa-check\"></i></span></button>\n        <button (click)=\"emitDeleteTask(singleItem._id)\"><i class=\"fas fa-trash-alt\"></i></button>\n      </aside>\n    </article>\n  "
         })
     ], SingleTaskComponent);
     return SingleTaskComponent;
@@ -250,7 +250,7 @@ exports.SingleTaskComponent = SingleTaskComponent;
 /***/ "../../../../../src/app/partials/todo-form/todo-form.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- \nBinding d'événement\n-->\n<button id=\"addTask\" (click)=\" addNewTask = !addNewTask \"><span *ngIf=\"!addNewTask\">Ajouter une tâche</span><span *ngIf=\"addNewTask\">Masquer le formulaire</span></button>\n<form action=\"test.php\" (submit)=\"submitForm()\" [ngClass]=\"{open: addNewTask}\">\n    <!-- \n    Utilisation du ngModel : data binding aller/retour\n  -->\n  <fieldset>\n    <label for=\"todoTitle\">Titre <span *ngIf=\"errorMsg.title.active\" >{{ errorMsg.title.msg }}</span> </label>\n    <input type=\"text\" name=\"todoTitle\" \n      [(ngModel)]=\"formObject.title\" \n      (focus)=\"errorMsg.title.active = false\"\n    >\n  </fieldset>\n\n  <fieldset>\n    <label for=\"todoContent\">Contenu <span *ngIf=\"errorMsg.content.active\" >{{ errorMsg.content.msg }}</span></label>\n    <textarea \n      name=\"todoContent\" \n      [(ngModel)]=\"formObject.content\"\n      (focus)=\"errorMsg.content.active = false\"\n    ></textarea>\n  </fieldset>\n\n  <fieldset>\n    <label for=\"todoType\">Type <span *ngIf=\"errorMsg.type.active\" >{{ errorMsg.type.msg }}</span></label>\n    <select name=\"todoType\" \n      [(ngModel)]=\"formObject.type\" \n      (focus)=\"errorMsg.type.active = false\"\n    >\n      <option value=\"NULL\">- Sélectionner -</option>\n      <option value=\"WORK\">Travail</option>\n      <option value=\"FUN\">Loisir</option>\n    </select>\n  </fieldset>\n\n  <button type=\"submit\">Ajouter</button> \n</form>"
+module.exports = "<!-- \nBinding d'événement\n-->\n<button id=\"addTask\" (click)=\" addNewTask = !addNewTask \"><span *ngIf=\"!addNewTask\"><i class=\"fas fa-plus-circle\"></i> Ajouter</span><span *ngIf=\"addNewTask\"><i class=\"fas fa-times-circle\"></i> Annuler</span></button>\n<form action=\"test.php\" (submit)=\"submitForm()\" [ngClass]=\"{open: addNewTask}\">\n    <!-- \n    Utilisation du ngModel : data binding aller/retour\n  -->\n  <fieldset>\n    <label for=\"todoTitle\">Titre<b>*</b> <span *ngIf=\"errorMsg.title.active\" >{{ errorMsg.title.msg }}</span> </label>\n    <input type=\"text\" name=\"todoTitle\" \n      [(ngModel)]=\"formObject.title\" \n      (focus)=\"errorMsg.title.active = false\"\n    >\n  </fieldset>\n\n  <fieldset>\n    <label for=\"todoContent\">Description</label>\n    <textarea \n      name=\"todoContent\" \n      [(ngModel)]=\"formObject.content\"\n      (focus)=\"errorMsg.content.active = false\"\n    ></textarea>\n  </fieldset>\n\n  <fieldset>\n    <label for=\"todoType\">Type<b>*</b> <span *ngIf=\"errorMsg.type.active\" >{{ errorMsg.type.msg }}</span></label>\n    <select name=\"todoType\" \n      [(ngModel)]=\"formObject.type\" \n      (focus)=\"errorMsg.type.active = false\"\n    >\n      <option value=\"NULL\">- Sélectionner -</option>\n      <option value=\"WORK\"><i class=\"fas fa-plus-circle\"></i> Travail</option>\n      <option value=\"FUN\">Loisir</option>\n    </select>\n  </fieldset>\n\n  <button type=\"submit\">Ajouter</button> \n</form>"
 
 /***/ }),
 
@@ -284,11 +284,7 @@ var TodoFormComponent = /** @class */ (function () {
         // Créer un objet pour les messages d'erreur
         this.errorMsg = {
             title: {
-                msg: "Minimum 5 caract\u00E8re pour le titre",
-                active: false
-            },
-            content: {
-                msg: "Minimum 5 caract\u00E8re pour le contenu",
+                msg: "Vous devez donner un titre",
                 active: false
             },
             type: {
@@ -299,7 +295,7 @@ var TodoFormComponent = /** @class */ (function () {
         // Créer une fonction pour la soumission du formulaire
         this.submitForm = function () {
             // Réinitialiser la valeur de error
-            _this.formObject.error = 3;
+            _this.formObject.error = 2;
             // Vérifier la présence de données
             if (_this.formObject.title.length >= 5) {
                 // Supprimer une erreur
@@ -308,14 +304,6 @@ var TodoFormComponent = /** @class */ (function () {
             else {
                 // Afficher un message d'erreur
                 _this.errorMsg.title.active = true;
-            }
-            if (_this.formObject.content.length >= 5) {
-                // Supprimer une erreur
-                _this.formObject.error -= 1;
-            }
-            else {
-                // Afficher un message d'erreur
-                _this.errorMsg.content.active = true;
             }
             if (_this.formObject.type !== "NULL") {
                 // Supprimer une erreur

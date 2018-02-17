@@ -10,9 +10,7 @@
 <!-- 
 Avant l'itération, s'assurer que la collection des données est pleine
 -->
-<h2>Liste des tâches</h2>
 <section id="taskList" *ngIf="tasksCollection">
-
   <!-- Itération sur l'article -->
   <article *ngFor="let item of tasksCollection">
     <app-single-task 
@@ -21,5 +19,4 @@ Avant l'itération, s'assurer que la collection des données est pleine
       [singleItem]="item" 
     ></app-single-task>
   </article>
-
 </section>
