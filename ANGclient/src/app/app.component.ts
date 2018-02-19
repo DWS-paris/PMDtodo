@@ -84,6 +84,7 @@ Exporter le composant
 
     // Fonction pour éditer une tâche
     public setTask = ( evt: TaskModel ) => {
+      console.log(evt)
       // Inverser la valeur isDone
       evt.isDone = !evt.isDone;
 

@@ -96,6 +96,7 @@ var AppComponent = /** @class */ (function () {
         };
         // Fonction pour éditer une tâche
         this.setTask = function (evt) {
+            console.log(evt);
             // Inverser la valeur isDone
             evt.isDone = !evt.isDone;
             // Appeler la fonction du service
