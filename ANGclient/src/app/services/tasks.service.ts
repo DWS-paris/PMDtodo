@@ -21,7 +21,7 @@ Exporter le service
 
     // Créer une variable pour l'adresse de l'API
     // private apiUrl: string = `http://localhost:3001/api`;
-    private apiUrl: string = `https://dwsapp.io/api`;
+    private apiUrl: string = `/api`;
 
     // Injecter la class Http dans le service
     constructor( private http: Http ) {};
