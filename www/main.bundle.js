@@ -25,12 +25,10 @@ module.exports = "<!-- \n  Intéger un partial/composant \n  Binding d'un évén
 /***/ }),
 
 /***/ "../../../../../src/app/app.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_tasks_service__ = __webpack_require__("../../../../../src/app/services/tasks.service.ts");
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -40,12 +38,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 /*
 Importer les class du composant
 */
-
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
 // Importer le service
-
+var tasks_service_1 = __webpack_require__("../../../../../src/app/services/tasks.service.ts");
 //
 /*
 Définir le composant
@@ -122,22 +121,22 @@ var AppComponent = /** @class */ (function () {
     };
     ;
     AppComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+        core_1.Component({
             selector: 'app-root',
             template: __webpack_require__("../../../../../src/app/app.component.html"),
             // Renseigner le service dans le tableau de providers
-            providers: [__WEBPACK_IMPORTED_MODULE_1__services_tasks_service__["a" /* TasksService */]]
+            providers: [tasks_service_1.TasksService]
         })
         //
         /*
         Exporter le composant
         */
         ,
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_tasks_service__["a" /* TasksService */]])
+        __metadata("design:paramtypes", [tasks_service_1.TasksService])
     ], AppComponent);
     return AppComponent;
 }());
-
+exports.AppComponent = AppComponent;
 ;
 //
 
@@ -145,63 +144,56 @@ var AppComponent = /** @class */ (function () {
 /***/ }),
 
 /***/ "../../../../../src/app/app.module.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__("../../../platform-browser/esm5/platform-browser.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__partials_todo_form_todo_form_component__ = __webpack_require__("../../../../../src/app/partials/todo-form/todo-form.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__partials_single_task_single_task_component__ = __webpack_require__("../../../../../src/app/partials/single-task/single-task.component.ts");
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-
-
+Object.defineProperty(exports, "__esModule", { value: true });
+var platform_browser_1 = __webpack_require__("../../../platform-browser/esm5/platform-browser.js");
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
 // Importer la class pour utiliser le ngModel
-
+var forms_1 = __webpack_require__("../../../forms/esm5/forms.js");
 // Importer la class pour utiliser les requêtes serveur
-
-
-
-
+var http_1 = __webpack_require__("../../../http/esm5/http.js");
+var app_component_1 = __webpack_require__("../../../../../src/app/app.component.ts");
+var todo_form_component_1 = __webpack_require__("../../../../../src/app/partials/todo-form/todo-form.component.ts");
+var single_task_component_1 = __webpack_require__("../../../../../src/app/partials/single-task/single-task.component.ts");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["E" /* NgModule */])({
+        core_1.NgModule({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */],
-                __WEBPACK_IMPORTED_MODULE_5__partials_todo_form_todo_form_component__["a" /* TodoFormComponent */],
-                __WEBPACK_IMPORTED_MODULE_6__partials_single_task_single_task_component__["a" /* SingleTaskComponent */]
+                app_component_1.AppComponent,
+                todo_form_component_1.TodoFormComponent,
+                single_task_component_1.SingleTaskComponent
             ],
             // Renseigner les modules dans le tableau des imports
             imports: [
-                __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */], __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */], __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* HttpModule */]
+                platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule
             ],
             providers: [],
-            bootstrap: [__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */]]
+            bootstrap: [app_component_1.AppComponent]
         })
     ], AppModule);
     return AppModule;
 }());
-
+exports.AppModule = AppModule;
 
 
 /***/ }),
 
 /***/ "../../../../../src/app/partials/single-task/single-task.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SingleTaskComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -211,15 +203,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
 // Importer la class Input pour récupérer la valeur d'une variable du composant parent
-
+var core_2 = __webpack_require__("../../../core/esm5/core.js");
 var SingleTaskComponent = /** @class */ (function () {
     function SingleTaskComponent() {
         var _this = this;
         // Définir les événements
-        this.setTask = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* EventEmitter */];
-        this.deleteTask = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* EventEmitter */];
+        this.setTask = new core_1.EventEmitter;
+        this.deleteTask = new core_1.EventEmitter;
         // Définir les fonction pour émettre les événements
         this.emitSetTask = function (item) {
             _this.setTask.emit(item);
@@ -229,19 +222,19 @@ var SingleTaskComponent = /** @class */ (function () {
         };
     }
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* Input */])(),
+        core_2.Input(),
         __metadata("design:type", Object)
     ], SingleTaskComponent.prototype, "singleItem", void 0);
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["K" /* Output */])(),
+        core_1.Output(),
         __metadata("design:type", Object)
     ], SingleTaskComponent.prototype, "setTask", void 0);
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["K" /* Output */])(),
+        core_1.Output(),
         __metadata("design:type", Object)
     ], SingleTaskComponent.prototype, "deleteTask", void 0);
     SingleTaskComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+        core_1.Component({
             selector: 'app-single-task',
             styles: [".taskDone{ opacity: .5 }"],
             template: "\n    <article class=\"singleTask\">\n      <div [ngClass]=\"{ taskDone: singleItem.isDone }\" >\n        <h3>{{singleItem.title}} <b>{{singleItem.type}}</b></h3>\n        <p>{{singleItem.content}}</p>\n      </div>\n      <aside>\n        <button (click)=\"emitSetTask(singleItem)\"><span *ngIf=\"singleItem.isDone\"><i class=\"fas fa-undo-alt\"></i></span><span *ngIf=\"!singleItem.isDone\"><i class=\"fas fa-check\"></i></span></button>\n        <button (click)=\"emitDeleteTask(singleItem._id)\"><i class=\"fas fa-trash-alt\"></i></button>\n      </aside>\n    </article>\n  "
@@ -249,7 +242,7 @@ var SingleTaskComponent = /** @class */ (function () {
     ], SingleTaskComponent);
     return SingleTaskComponent;
 }());
-
+exports.SingleTaskComponent = SingleTaskComponent;
 
 
 /***/ }),
@@ -262,11 +255,10 @@ module.exports = "<!-- \nBinding d'événement\n-->\n<button id=\"addTask\" (cli
 /***/ }),
 
 /***/ "../../../../../src/app/partials/todo-form/todo-form.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TodoFormComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -276,16 +268,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
 /*
 Importer les class pour générer un événement à capter dans le composant parent
 */
-
+var core_2 = __webpack_require__("../../../core/esm5/core.js");
 var TodoFormComponent = /** @class */ (function () {
     function TodoFormComponent() {
         var _this = this;
         // Création d'un événement
-        this.sendData = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* EventEmitter */];
+        this.sendData = new core_2.EventEmitter;
         // Création d'une variable pour afficher le formulaire
         this.addNewTask = false;
         // Créer un objet pour les messages d'erreur
@@ -336,15 +329,15 @@ var TodoFormComponent = /** @class */ (function () {
     };
     ;
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* Input */])(),
+        core_1.Input(),
         __metadata("design:type", Object)
     ], TodoFormComponent.prototype, "formObject", void 0);
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["K" /* Output */])(),
+        core_2.Output(),
         __metadata("design:type", Object)
     ], TodoFormComponent.prototype, "sendData", void 0);
     TodoFormComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+        core_1.Component({
             selector: 'app-todo-form',
             template: __webpack_require__("../../../../../src/app/partials/todo-form/todo-form.component.html")
         }),
@@ -352,21 +345,17 @@ var TodoFormComponent = /** @class */ (function () {
     ], TodoFormComponent);
     return TodoFormComponent;
 }());
-
+exports.TodoFormComponent = TodoFormComponent;
 ;
 
 
 /***/ }),
 
 /***/ "../../../../../src/app/services/tasks.service.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TasksService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/toPromise.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__);
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -376,14 +365,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 /*
 Importer les class
 */
-
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
 // Importer les class Http et Response pour faire des requêtes
-
+var http_1 = __webpack_require__("../../../http/esm5/http.js");
 // Importer le sytème de gestion de Promise
-
+__webpack_require__("../../../../rxjs/_esm5/add/operator/toPromise.js");
 //
 /*
 Exporter le service
@@ -450,27 +440,28 @@ var TasksService = /** @class */ (function () {
     };
     ;
     TasksService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]])
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.Http])
     ], TasksService);
     return TasksService;
 }());
-
+exports.TasksService = TasksService;
 //
 
 
 /***/ }),
 
 /***/ "../../../../../src/environments/environment.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
+
 // The file contents for the current environment will overwrite these during build.
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
-var environment = {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.environment = {
     production: false
 };
 
@@ -478,22 +469,19 @@ var environment = {
 /***/ }),
 
 /***/ "../../../../../src/main.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__("../../../platform-browser-dynamic/esm5/platform-browser-dynamic.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_module__ = __webpack_require__("../../../../../src/app/app.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
 
-
-
-
-if (__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].production) {
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_7" /* enableProdMode */])();
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var platform_browser_dynamic_1 = __webpack_require__("../../../platform-browser-dynamic/esm5/platform-browser-dynamic.js");
+var app_module_1 = __webpack_require__("../../../../../src/app/app.module.ts");
+var environment_1 = __webpack_require__("../../../../../src/environments/environment.ts");
+if (environment_1.environment.production) {
+    core_1.enableProdMode();
 }
-Object(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_2__app_app_module__["a" /* AppModule */])
+platform_browser_dynamic_1.platformBrowserDynamic().bootstrapModule(app_module_1.AppModule)
     .catch(function (err) { return console.log(err); });
 
 

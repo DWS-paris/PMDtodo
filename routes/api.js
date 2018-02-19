@@ -151,7 +151,7 @@ Définition des routes
             else{
                 db.collection(process.env.MONGO_COLNAME, (err, tasks)=>{
                     // Suppriumer la tâche
-                    tasks.update({_id: new ObjectId(req.params.id)}, {$set:{state: req.body.state}});
+                    tasks.update({_id: new ObjectId(req.params.id)}, {$set:{isDone: req.body.state}});
 
                     // Vérification de la commande MongoDb
                     if(err){  res.send({ msg:false }) } 
