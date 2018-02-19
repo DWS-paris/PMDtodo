@@ -67,7 +67,6 @@ Exporter le service
     Créer une fonction pour inverser la valuer isDone d'une tâche
     */
       public setTask = ( task: TaskModel ): Promise<TaskModel> => {
-        task.isDone = !task.isDone;
         return this.http.put( `${this.apiUrl}/set-task-state/${task._id}`, task ).toPromise()
         // Success
         .then( data => this.dataFromApi(data) )

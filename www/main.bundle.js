@@ -417,7 +417,6 @@ var TasksService = /** @class */ (function () {
         Créer une fonction pour inverser la valuer isDone d'une tâche
         */
         this.setTask = function (task) {
-            task.isDone = !task.isDone;
             return _this.http.put(_this.apiUrl + "/set-task-state/" + task._id, task).toPromise()
                 .then(function (data) { return _this.dataFromApi(data); })
                 .catch(function (err) { return _this.handleError(err); });
