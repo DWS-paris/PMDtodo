@@ -37,7 +37,7 @@ Exporter le composant
       title: ``,
       content: ``,
       type: `NULL`,
-      isDone: false
+      state: false
     };
 
     // Injecter le service dans le constructeur
@@ -75,7 +75,7 @@ Exporter le composant
           title: ``,
           content: ``,
           type: `NULL`,
-          isDone: false
+          state: false
         }
       } )
       .catch( err => console.error(err) )
@@ -84,9 +84,8 @@ Exporter le composant
 
     // Fonction pour éditer une tâche
     public setTask = ( evt: TaskModel ) => {
-      console.log(evt)
       // Inverser la valeur isDone
-      evt.isDone = !evt.isDone;
+      evt.state = !evt.state;
 
       // Appeler la fonction du service
       this.myService.setTask( evt )

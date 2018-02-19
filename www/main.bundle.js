@@ -60,7 +60,7 @@ var AppComponent = /** @class */ (function () {
             title: "",
             content: "",
             type: "NULL",
-            isDone: false
+            state: false
         };
         // Créer une fonction pour charger les tâches depuis le service
         this.getAllTasks = function () {
@@ -89,16 +89,15 @@ var AppComponent = /** @class */ (function () {
                     title: "",
                     content: "",
                     type: "NULL",
-                    isDone: false
+                    state: false
                 };
             })
                 .catch(function (err) { return console.error(err); });
         };
         // Fonction pour éditer une tâche
         this.setTask = function (evt) {
-            console.log(evt);
             // Inverser la valeur isDone
-            evt.isDone = !evt.isDone;
+            evt.state = !evt.state;
             // Appeler la fonction du service
             _this.myService.setTask(evt)
                 .then(function (uniqTask) { return console.log(uniqTask); })
@@ -238,7 +237,7 @@ var SingleTaskComponent = /** @class */ (function () {
         core_1.Component({
             selector: 'app-single-task',
             styles: [".taskDone{ opacity: .5 }"],
-            template: "\n    <article class=\"singleTask\">\n      <div [ngClass]=\"{ taskDone: singleItem.isDone }\" >\n        <h3>{{singleItem.title}} <b>{{singleItem.type}}</b></h3>\n        <p>{{singleItem.content}}</p>\n      </div>\n      <aside>\n        <button (click)=\"emitSetTask(singleItem)\"><span *ngIf=\"singleItem.isDone\"><i class=\"fas fa-undo-alt\"></i></span><span *ngIf=\"!singleItem.isDone\"><i class=\"fas fa-check\"></i></span></button>\n        <button (click)=\"emitDeleteTask(singleItem._id)\"><i class=\"fas fa-trash-alt\"></i></button>\n      </aside>\n    </article>\n  "
+            template: "\n    <article class=\"singleTask\">\n      <div [ngClass]=\"{ taskDone: singleItem.state }\" >\n        <h3>{{singleItem.title}} <b>{{singleItem.type}}</b></h3>\n        <p>{{singleItem.content}}</p>\n      </div>\n      <aside>\n        <button (click)=\"emitSetTask(singleItem)\"><span *ngIf=\"singleItem.state\"><i class=\"fas fa-undo-alt\"></i></span><span *ngIf=\"!singleItem.state\"><i class=\"fas fa-check\"></i></span></button>\n        <button (click)=\"emitDeleteTask(singleItem._id)\"><i class=\"fas fa-trash-alt\"></i></button>\n      </aside>\n    </article>\n  "
         })
     ], SingleTaskComponent);
     return SingleTaskComponent;

@@ -9,5 +9,5 @@ export interface TaskModel {
     title: string,
     content: string,
     type: string,
-    isDone: boolean
+    state: boolean
 };

@@ -9,12 +9,12 @@ import { TaskModel } from '../../models/task.model';
   styles: [ `.taskDone{ opacity: .5 }` ],
   template: `
     <article class="singleTask">
-      <div [ngClass]="{ taskDone: singleItem.isDone }" >
+      <div [ngClass]="{ taskDone: singleItem.state }" >
         <h3>{{singleItem.title}} <b>{{singleItem.type}}</b></h3>
         <p>{{singleItem.content}}</p>
       </div>
       <aside>
-        <button (click)="emitSetTask(singleItem)"><span *ngIf="singleItem.isDone"><i class="fas fa-undo-alt"></i></span><span *ngIf="!singleItem.isDone"><i class="fas fa-check"></i></span></button>
+        <button (click)="emitSetTask(singleItem)"><span *ngIf="singleItem.state"><i class="fas fa-undo-alt"></i></span><span *ngIf="!singleItem.state"><i class="fas fa-check"></i></span></button>
         <button (click)="emitDeleteTask(singleItem._id)"><i class="fas fa-trash-alt"></i></button>
       </aside>
     </article>
